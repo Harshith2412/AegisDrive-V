@@ -1,0 +1,1483 @@
+{
+  "requirements": 49,
+  "tests_tagged": 92,
+  "status_counts": {
+    "VERIFIED": 49,
+    "FAILED": 0,
+    "NOT_RUN": 0,
+    "NO_TESTS": 0
+  },
+  "errors": [],
+  "matrix": [
+    {
+      "id": "SYS-REQ-001",
+      "title": "Stationary target collision avoidance (nominal)",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        },
+        {
+          "id": "ST-SLICE-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:34"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SYS-REQ-002",
+      "title": "No intervention without a collision threat",
+      "parent": [
+        "CHARTER-G2"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:43"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SYS-REQ-003",
+      "title": "Lead-vehicle braking scenarios",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:52"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-001",
+      "title": "Time-to-collision computation",
+      "parent": [
+        "SYS-REQ-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#compute_ttc"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:22"
+        },
+        {
+          "id": "IT-ABI-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:36"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-002",
+      "title": "Forward collision warning threshold",
+      "parent": [
+        "SYS-REQ-001",
+        "SYS-REQ-002"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:53"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        },
+        {
+          "id": "ST-SLICE-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:43"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-003",
+      "title": "Automatic emergency braking threshold and demand",
+      "parent": [
+        "SYS-REQ-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#compute_required_decel"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:31"
+        },
+        {
+          "id": "UT-ADAS-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:73"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-004",
+      "title": "Activation speed window",
+      "parent": [
+        "SYS-REQ-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:38"
+        },
+        {
+          "id": "UT-ADAS-006",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:96"
+        },
+        {
+          "id": "UT-ADAS-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:107"
+        },
+        {
+          "id": "UT-V3-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:398"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-005",
+      "title": "Standstill hold and release",
+      "parent": [
+        "SYS-REQ-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:107"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-006",
+      "title": "Abort braking when the threat clears",
+      "parent": [
+        "SYS-REQ-002"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-008",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:133"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-007",
+      "title": "State machine integrity",
+      "parent": [
+        "SYS-REQ-001",
+        "SYS-REQ-002"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#kAllowed",
+        "ecu/src/adas_ecu.cpp#request_transition"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:38"
+        },
+        {
+          "id": "UT-ADAS-014",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:241"
+        },
+        {
+          "id": "IT-ABI-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:47"
+        },
+        {
+          "id": "ST-SLICE-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:127"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-008",
+      "title": "ADAS CAN transmission",
+      "parent": [
+        "TSR-002"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#finalize",
+        "ecu/src/codec.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-016",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:280"
+        },
+        {
+          "id": "UT-E2E-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:51"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-009",
+      "title": "Input plausibility",
+      "parent": [
+        "FSR-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU (Safety Supervisor function)"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#check_inputs"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-011",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:183"
+        },
+        {
+          "id": "UT-ADAS-017",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:297"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-010",
+      "title": "Persistent degradation to FAULT",
+      "parent": [
+        "FSR-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-012",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:207"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-011",
+      "title": "Recovery from DEGRADED",
+      "parent": [
+        "FSR-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-013",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:229"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "ADAS-REQ-012",
+      "title": "Configuration validation",
+      "parent": [
+        "FSR-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#adas_config_valid"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-015",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:264"
+        },
+        {
+          "id": "UT-V3-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:442"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "FSR-001",
+      "title": "(PROVISIONAL) Detect stale or frozen perception data",
+      "parent": [
+        "HAZ-H5-PROV"
+      ],
+      "allocated_to": [
+        "ADAS ECU",
+        "Body Control Module"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#check_inputs",
+        "ecu/src/body_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:147"
+        },
+        {
+          "id": "UT-ADAS-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:163"
+        },
+        {
+          "id": "UT-SIM-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:44"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "TSR-001",
+      "title": "(PROVISIONAL) Timestamp freshness monitoring",
+      "parent": [
+        "FSR-001"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#fresh"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:147"
+        },
+        {
+          "id": "UT-ADAS-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:163"
+        },
+        {
+          "id": "UT-ADAS-017",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:297"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "TSR-002",
+      "title": "(PROVISIONAL) E2E protection of safety-relevant frames",
+      "parent": [
+        "HAZ-H3-PROV",
+        "HAZ-H6-PROV"
+      ],
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU",
+        "Body Control Module"
+      ],
+      "implementation": [
+        "ecu/src/e2e.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-E2E-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:15"
+        },
+        {
+          "id": "UT-E2E-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:32"
+        },
+        {
+          "id": "ST-INV-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:94"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "TSR-003",
+      "title": "(PROVISIONAL) Brake command timeout",
+      "parent": [
+        "HAZ-H6-PROV"
+      ],
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:86"
+        },
+        {
+          "id": "ST-FI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:73"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BRK-REQ-001",
+      "title": "Brake command validation",
+      "parent": [
+        "TSR-002"
+      ],
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#validate",
+        "ecu/src/codec.cpp#decode_brake_request"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:34"
+        },
+        {
+          "id": "UT-BRK-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:48"
+        },
+        {
+          "id": "UT-BRK-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:143"
+        },
+        {
+          "id": "UT-E2E-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:51"
+        },
+        {
+          "id": "UT-E2E-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:61"
+        },
+        {
+          "id": "ST-INV-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:94"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BRK-REQ-002",
+      "title": "Brake command timeout behaviour",
+      "parent": [
+        "TSR-003"
+      ],
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:86"
+        },
+        {
+          "id": "ST-FI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:73"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BRK-REQ-003",
+      "title": "Brake demand arbitration",
+      "parent": [
+        "SYS-REQ-001"
+      ],
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:99"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BRK-REQ-004",
+      "title": "Actuator model",
+      "parent": [
+        "SYS-REQ-001"
+      ],
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:115"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BRK-REQ-005",
+      "title": "Brake status reporting",
+      "parent": [
+        "CHARTER-G3"
+      ],
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step",
+        "ecu/src/codec.cpp#encode_brake_status"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-006",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:129"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BCM-REQ-001",
+      "title": "Brake lamp activation latency",
+      "parent": [
+        "CHARTER-G3",
+        "HAZ-H4-PROV"
+      ],
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:27"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BCM-REQ-002",
+      "title": "Driver warning indicator",
+      "parent": [
+        "SYS-REQ-001"
+      ],
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:37"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BCM-REQ-003",
+      "title": "Hazard lamp policy (project-defined)",
+      "parent": [
+        "CHARTER-G3"
+      ],
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:48"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BCM-REQ-004",
+      "title": "Body ECU input supervision",
+      "parent": [
+        "HAZ-H4-PROV",
+        "HAZ-H6-PROV"
+      ],
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:60"
+        },
+        {
+          "id": "UT-BCM-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:82"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SWR-001",
+      "title": "ABI integrity between simulation and ECU library",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Simulation harness"
+      ],
+      "implementation": [
+        "sim/aegis_sim/ecu_bindings.py#verify_abi",
+        "ecu/src/aegis_c_api.cpp#aegis_struct_size"
+      ],
+      "tests": [
+        {
+          "id": "IT-ABI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:9"
+        },
+        {
+          "id": "IT-ABI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:18"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SWR-002",
+      "title": "CRC algorithm correctness",
+      "parent": [
+        "TSR-002"
+      ],
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU",
+        "Body Control Module"
+      ],
+      "implementation": [
+        "ecu/src/e2e.cpp#crc8_j1850"
+      ],
+      "tests": [
+        {
+          "id": "UT-E2E-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:9"
+        },
+        {
+          "id": "IT-ABI-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:36"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SIM-REQ-001",
+      "title": "Vehicle model correctness",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Simulation harness"
+      ],
+      "implementation": [
+        "sim/aegis_sim/vehicle.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:12"
+        },
+        {
+          "id": "UT-SIM-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:22"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SIM-REQ-002",
+      "title": "Deterministic, timestamped sensor simulation",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Simulation harness"
+      ],
+      "implementation": [
+        "sim/aegis_sim/sensors.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:29"
+        },
+        {
+          "id": "UT-SIM-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:44"
+        },
+        {
+          "id": "ST-SLICE-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:118"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SIM-REQ-003",
+      "title": "Virtual CAN timing",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Virtual CAN bus"
+      ],
+      "implementation": [
+        "sim/aegis_sim/can_bus.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:51"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "FSR-201",
+      "title": "Stopping-distance assurance",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:320"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        },
+        {
+          "id": "ST-V2-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "TSR-201",
+      "title": "Stopping-distance assurance",
+      "parent": [
+        "FSR-201"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:320"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        },
+        {
+          "id": "ST-V2-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "FSR-202",
+      "title": "Sustained threat-clear assurance",
+      "parent": [
+        "CHARTER-G2"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:334"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "TSR-202",
+      "title": "Sustained threat-clear assurance",
+      "parent": [
+        "FSR-202"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:334"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "FSR-203",
+      "title": "Brake execution assurance",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:343"
+        },
+        {
+          "id": "UT-V2-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:360"
+        },
+        {
+          "id": "UT-V2-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:378"
+        },
+        {
+          "id": "ST-V2-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:29"
+        },
+        {
+          "id": "ST-V2-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:38"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "TSR-203",
+      "title": "Brake execution assurance",
+      "parent": [
+        "FSR-203"
+      ],
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:343"
+        },
+        {
+          "id": "UT-V2-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:360"
+        },
+        {
+          "id": "UT-V2-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:378"
+        },
+        {
+          "id": "ST-V2-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:29"
+        },
+        {
+          "id": "ST-V2-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:38"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SIM-301",
+      "title": "Physically consistent simulation contact and braking",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Simulation"
+      ],
+      "implementation": [
+        "sim/aegis_sim/vehicle.py#pair_step",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_physics.py:5"
+        },
+        {
+          "id": "UT-V3-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_physics.py:33"
+        },
+        {
+          "id": "PBT-V3-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_properties.py:7"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "PER-301",
+      "title": "Camera acquisition and delivery contract",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "Camera"
+      ],
+      "implementation": [
+        "sim/aegis_sim/perception.py#CameraModel"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_perception.py:8"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "PER-302",
+      "title": "Per-source health and fusion assurance",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "Fusion"
+      ],
+      "implementation": [
+        "sim/aegis_sim/perception.py#Fusion"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_perception.py:24"
+        },
+        {
+          "id": "UT-V3-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_perception.py:38"
+        },
+        {
+          "id": "ST-V3-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:8"
+        },
+        {
+          "id": "ST-V3-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:42"
+        },
+        {
+          "id": "PBT-V3-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_properties.py:18"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "BRK-301",
+      "title": "Backup transport containment",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:159"
+        },
+        {
+          "id": "UT-V3-011",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:177"
+        },
+        {
+          "id": "ST-V3-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:19"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "DIA-301",
+      "title": "Achieved braking and transport diagnostic assurance",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:412"
+        },
+        {
+          "id": "UT-V3-008",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:429"
+        },
+        {
+          "id": "ST-V3-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:33"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SEC-401",
+      "title": "Authorized message authentication and bounded CAN FD framing",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Security gateway"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:10"
+        },
+        {
+          "id": "SEC-PBT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:62"
+        },
+        {
+          "id": "SEC-PBT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:71"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SEC-402",
+      "title": "Monotonic freshness and explicit recovery policy",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Security gateway"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SEC-403",
+      "title": "Authenticated ingress retains application safety validation",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "Security gateway"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-ST-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:13"
+        },
+        {
+          "id": "SEC-ST-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:63"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SEC-404",
+      "title": "Safety-security event and availability supervision",
+      "parent": [
+        "CHARTER-G1"
+      ],
+      "allocated_to": [
+        "Security gateway",
+        "ADAS ECU"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-CPP-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:481"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:40"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    },
+    {
+      "id": "SEC-405",
+      "title": "Bounded attack handling and diagnostics",
+      "parent": [
+        "CHARTER-G4"
+      ],
+      "allocated_to": [
+        "Security gateway"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:40"
+        }
+      ],
+      "verification_status": "VERIFIED"
+    }
+  ],
+  "characterization_tests": {
+    "ST-INV-002": {
+      "id": "ST-INV-002",
+      "kind": "py",
+      "file": "tests/python/test_vertical_slice.py",
+      "line": 104,
+      "executable": "test_vertical_slice.py::test_known_gap_crc_is_not_authentication",
+      "verifies": [],
+      "characterizes": [
+        "OI-005"
+      ],
+      "result": "PASS"
+    }
+  }
+}

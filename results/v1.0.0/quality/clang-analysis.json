@@ -1,0 +1,38 @@
+[
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "file": "ecu/src/aegis_c_api.cpp",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "file": "ecu/src/codec.cpp",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "file": "ecu/src/e2e.cpp",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

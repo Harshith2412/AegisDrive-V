@@ -1,0 +1,7 @@
+FI01: collisions 20/20  (95% CI 0.839-1.000)
+FI02: collisions 20/20  (95% CI 0.839-1.000)
+S01: collisions 0/20  (95% CI 0.000-0.161)
+S02: collisions 0/20  (95% CI 0.000-0.161)
+S03: collisions 0/20  (95% CI 0.000-0.161)
+S04: collisions 0/20  (95% CI 0.000-0.161)
+done in 19.13 s -> results/v0.3.0/baseline/scenarios

@@ -1,0 +1,18 @@
+{
+  "distinct_physical_outcome_records_excluding_seed": 5,
+  "sampled_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "min_gaps": [
+    4.960051048162967,
+    4.9270051037133555,
+    4.927799798163747,
+    4.897322454388984,
+    4.919073687032565
+  ],
+  "scope": "S03 nominal radar noise only, not independent traffic populations"
+}

@@ -1,0 +1,8 @@
+[  7%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/adas_ecu.cpp.o
+[ 14%] Linking CXX static library libaegis_ecu_core.a
+[ 42%] Built target aegis_ecu_core
+[ 50%] Linking CXX shared library libaegis_ecu.dylib
+[ 57%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_adas.cpp.o
+[ 64%] Built target aegis_ecu
+[ 71%] Linking CXX executable aegis_ecu_tests
+[100%] Built target aegis_ecu_tests

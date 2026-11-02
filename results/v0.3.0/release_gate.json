@@ -1,0 +1,23 @@
+{
+  "release": "0.3.0",
+  "status": "PASS: educational evidence integrity gate only",
+  "cpp_tests": 45,
+  "python_tests": 34,
+  "requirements_linked_to_passing_tests": 44,
+  "sysml_files_semantically_validated": 2,
+  "negative_control_rejected": true,
+  "candidate_runs": 828,
+  "holdout_collisions": 29,
+  "holdout_runs": 120,
+  "fi01": {
+    "radar_collisions": 20,
+    "healthy_camera_collisions": 0,
+    "runs": 20
+  },
+  "fi02": {
+    "primary_only_collisions": 20,
+    "healthy_backup_collisions": 0,
+    "runs": 20
+  },
+  "limitations": "Shared ECU/actuator failures and false-positive ghosts remain hazardous. Sensor independence unproven. No compliance or certification claim."
+}

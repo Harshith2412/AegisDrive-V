@@ -1,0 +1,1472 @@
+{
+  "state_edges_checked": 26,
+  "requirements_linked": 39,
+  "chains": [
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "SYS-REQ-001",
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        },
+        {
+          "id": "ST-SLICE-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:34"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-02"
+      ],
+      "safety_goals": [
+        "SG-02"
+      ],
+      "requirement": "SYS-REQ-002",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:43"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "SYS-REQ-003",
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:52"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-001",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#compute_ttc"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:22"
+        },
+        {
+          "id": "IT-ABI-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:36"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-002",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:53"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        },
+        {
+          "id": "ST-SLICE-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:43"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-003",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#compute_required_decel"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:31"
+        },
+        {
+          "id": "UT-ADAS-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:73"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-004",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:38"
+        },
+        {
+          "id": "UT-ADAS-006",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:96"
+        },
+        {
+          "id": "UT-ADAS-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:107"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-005",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:107"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-05"
+      ],
+      "safety_goals": [
+        "SG-05"
+      ],
+      "requirement": "ADAS-REQ-006",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-008",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:133"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-007",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#kAllowed",
+        "ecu/src/adas_ecu.cpp#request_transition"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:38"
+        },
+        {
+          "id": "UT-ADAS-014",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:241"
+        },
+        {
+          "id": "IT-ABI-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:47"
+        },
+        {
+          "id": "ST-SLICE-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:127"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-008",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#finalize",
+        "ecu/src/codec.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-016",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:280"
+        },
+        {
+          "id": "UT-E2E-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:51"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "requirement": "ADAS-REQ-009",
+      "allocated_to": [
+        "ADAS ECU (Safety Supervisor function)"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#check_inputs"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-011",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:183"
+        },
+        {
+          "id": "UT-ADAS-017",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:297"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "requirement": "ADAS-REQ-010",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-012",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:207"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "requirement": "ADAS-REQ-011",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-013",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:229"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "ADAS-REQ-012",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#adas_config_valid"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-015",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:264"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "requirement": "FSR-001",
+      "allocated_to": [
+        "ADAS ECU",
+        "Body Control Module"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#check_inputs",
+        "ecu/src/body_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:147"
+        },
+        {
+          "id": "UT-ADAS-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:163"
+        },
+        {
+          "id": "UT-SIM-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:44"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "requirement": "TSR-001",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#fresh"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:147"
+        },
+        {
+          "id": "UT-ADAS-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:163"
+        },
+        {
+          "id": "UT-ADAS-017",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:297"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-02"
+      ],
+      "safety_goals": [
+        "SG-02"
+      ],
+      "requirement": "TSR-002",
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU",
+        "Body Control Module"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/e2e.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-E2E-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:15"
+        },
+        {
+          "id": "UT-E2E-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:32"
+        },
+        {
+          "id": "ST-INV-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:94"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "requirement": "TSR-003",
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:86"
+        },
+        {
+          "id": "ST-FI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:73"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-02"
+      ],
+      "safety_goals": [
+        "SG-02"
+      ],
+      "requirement": "BRK-REQ-001",
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#validate",
+        "ecu/src/codec.cpp#decode_brake_request"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:34"
+        },
+        {
+          "id": "UT-BRK-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:48"
+        },
+        {
+          "id": "UT-BRK-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:143"
+        },
+        {
+          "id": "UT-E2E-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:51"
+        },
+        {
+          "id": "UT-E2E-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:61"
+        },
+        {
+          "id": "ST-INV-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:94"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "requirement": "BRK-REQ-002",
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:86"
+        },
+        {
+          "id": "ST-FI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:73"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "BRK-REQ-003",
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:99"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "BRK-REQ-004",
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:115"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "BRK-REQ-005",
+      "allocated_to": [
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step",
+        "ecu/src/codec.cpp#encode_brake_status"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-006",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:129"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "requirement": "BCM-REQ-001",
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:27"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "requirement": "BCM-REQ-002",
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:37"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "requirement": "BCM-REQ-003",
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:48"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "requirement": "BCM-REQ-004",
+      "allocated_to": [
+        "Body Control Module"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:60"
+        },
+        {
+          "id": "UT-BCM-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:82"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "SWR-001",
+      "allocated_to": [
+        "Simulation harness"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/ecu_bindings.py#verify_abi",
+        "ecu/src/aegis_c_api.cpp#aegis_struct_size"
+      ],
+      "tests": [
+        {
+          "id": "IT-ABI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:9"
+        },
+        {
+          "id": "IT-ABI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:18"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "supporting assurance"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "SWR-002",
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU",
+        "Body Control Module"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/e2e.cpp#crc8_j1850"
+      ],
+      "tests": [
+        {
+          "id": "UT-E2E-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:9"
+        },
+        {
+          "id": "IT-ABI-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:36"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "supporting assurance"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "SIM-REQ-001",
+      "allocated_to": [
+        "Simulation harness"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/vehicle.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:12"
+        },
+        {
+          "id": "UT-SIM-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:22"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "supporting assurance"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "SIM-REQ-002",
+      "allocated_to": [
+        "Simulation harness"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/sensors.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:29"
+        },
+        {
+          "id": "UT-SIM-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:44"
+        },
+        {
+          "id": "ST-SLICE-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:118"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "supporting assurance"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "SIM-REQ-003",
+      "allocated_to": [
+        "Virtual CAN bus"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/can_bus.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:51"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "supporting assurance"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "FSR-201",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:320"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        },
+        {
+          "id": "ST-V2-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:19"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "requirement": "TSR-201",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:320"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        },
+        {
+          "id": "ST-V2-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:19"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-05"
+      ],
+      "safety_goals": [
+        "SG-05"
+      ],
+      "requirement": "FSR-202",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:334"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-05"
+      ],
+      "safety_goals": [
+        "SG-05"
+      ],
+      "requirement": "TSR-202",
+      "allocated_to": [
+        "ADAS ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:334"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "requirement": "FSR-203",
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:343"
+        },
+        {
+          "id": "UT-V2-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:360"
+        },
+        {
+          "id": "UT-V2-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:378"
+        },
+        {
+          "id": "ST-V2-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:29"
+        },
+        {
+          "id": "ST-V2-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:38"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    },
+    {
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "requirement": "TSR-203",
+      "allocated_to": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "models": [
+        "models/context.puml",
+        "models/interfaces.puml",
+        "models/sequence.puml",
+        "models/adas_states.puml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:343"
+        },
+        {
+          "id": "UT-V2-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:360"
+        },
+        {
+          "id": "UT-V2-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:378"
+        },
+        {
+          "id": "ST-V2-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:29"
+        },
+        {
+          "id": "ST-V2-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:38"
+        }
+      ],
+      "evidence": "results/v0.2.0/traceability_matrix.json",
+      "role": "functional allocation"
+    }
+  ],
+  "sysml_validation": "NOT VALIDATED: no SysML v2 parser installed",
+  "note": "Link integrity and executed test status only; no proof of hazard mitigation or UML semantics."
+}

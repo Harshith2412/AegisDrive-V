@@ -1,0 +1,6 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/harshithmadhavaram/Downloads/aegisdrive-v/build
+[ 42%] Built target aegis_ecu_core
+[ 57%] Built target aegis_ecu
+[100%] Built target aegis_ecu_tests

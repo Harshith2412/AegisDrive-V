@@ -1,0 +1,6 @@
+[ 42%] Built target aegis_ecu_core
+[ 57%] Built target aegis_ecu
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_adas.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_brake.cpp.o
+[ 78%] Linking CXX executable aegis_ecu_tests
+[100%] Built target aegis_ecu_tests

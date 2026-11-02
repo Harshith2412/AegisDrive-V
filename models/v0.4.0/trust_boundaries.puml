@@ -1,0 +1,45 @@
+@startuml
+!pragma layout smetana
+rectangle "Untrusted transport / local injector" as Wire
+rectangle "Authorized producers (compromise still possible)" {
+ component Radar
+ component Camera
+ component ADAS
+}
+rectangle "Shared test-only keys / clock / retained-state abstraction" as Shared
+rectangle "Authentication boundary (Python SiL adapters)" {
+ component "Sensor ingress verifier" as Sensors
+ component "Primary command verifier" as Primary
+ component "Backup command verifier" as Backup
+ component "Per-subscriber status verifiers" as Status
+}
+rectangle "Trusted local FFI / native ECU boundary" {
+ component "C++ ADAS + safety supervisor" as Supervisor
+ component "C++ Brake ECU + original E2E checks" as Brake
+ component "C++ Body ECU" as Body
+}
+Wire --> Sensors
+Wire --> Primary
+Wire --> Backup
+Wire --> Status
+Radar --> Wire : authenticated acquisition data
+Camera --> Wire : authenticated acquisition data
+ADAS --> Wire : authenticated request / state
+Shared --> Sensors
+Shared --> Primary
+Shared --> Backup
+Shared --> Status
+Sensors --> Supervisor : verified, then semantic gates
+Primary --> Brake : verified 8-byte request
+Backup --> Brake : verified 8-byte request
+Status --> Body
+Status --> Supervisor
+Brake --> Wire : authenticated brake status
+component "Single physical actuator / friction-limited plant" as Plant
+Brake --> Plant
+Plant --> Supervisor : trusted previous-step achieved deceleration
+note bottom of Shared
+Backup transport shares security dependencies and physical actuation.
+MAC authenticates permitted producer; it cannot prove benign intent.
+end note
+@enduml

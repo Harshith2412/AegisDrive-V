@@ -1,0 +1,21 @@
+.......................F.                                                [100%]
+=================================== FAILURES ===================================
+_____________________ test_runs_are_reproducible_per_seed ______________________
+
+    def test_runs_are_reproducible_per_seed():
+        sc = load_scenario(S03)
+        a, b, c = (run_scenario(sc, seed=s) for s in (3, 3, 4))
+        strip = lambda r: {k: v for k, v in r.to_dict().items() if not k.startswith("adas_step")}  # noqa: E731
+>       assert strip(a) == strip(b)
+E       AssertionError: assert {'scenario_id...s': None, ...} == {'scenario_id...s': None, ...}
+E         
+E         Omitting 38 identical items, use -vv to show
+E         Differing items:
+E         {'adas_cpu_mean_us': 3.4730179880079945} != {'adas_cpu_mean_us': 3.4863424383744173}
+E         {'adas_cpu_max_us': 36.0} != {'adas_cpu_max_us': 17.0}
+E         Use -v to get more diff
+
+tests/python/test_vertical_slice.py:123: AssertionError
+=========================== short test summary info ============================
+FAILED tests/python/test_vertical_slice.py::test_runs_are_reproducible_per_seed
+1 failed, 24 passed in 15.82s

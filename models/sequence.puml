@@ -1,0 +1,26 @@
+@startuml
+participant Radar
+participant ADAS
+participant CAN
+participant Brake
+participant Body
+participant Plant
+loop 10 ms step
+ CAN -> CAN : advance previous-step frames
+ Radar -> ADAS : cached/new 20 Hz measurement
+ CAN -> ADAS : previous brake status
+ ADAS -> ADAS : validate inputs + feedback; TTC/envelope/FSM
+ ADAS -> CAN : request + ADAS status
+ CAN -> Brake : previous request
+ Brake -> Brake : E2E validate, accept/echo, timeout, arbitration
+ Brake -> CAN : status + accepted counter
+ CAN -> Body : previous brake + ADAS status
+ Body -> Body : lamps, warning, unavailable
+ Brake -> Plant : actuator output (then friction limit)
+end
+note over ADAS,Brake
+FI02: dropped commands -> frozen accepted counter/timeout.
+ADAS indicates unavailable; current valid threat requests continue.
+No alternate actuation path: collision remains possible.
+end note
+@enduml

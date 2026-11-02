@@ -1,0 +1,116 @@
+{
+  "top_claim": {
+    "id": "C0",
+    "text": "This educational case study transparently characterizes its specified simulated mechanisms, evidence and unresolved hazards.",
+    "status": "REVIEWABLE_RESEARCH_ARTIFACT_NOT_SAFE_VEHICLE_CLAIM"
+  },
+  "argument": "Combine reproducibility, mechanism verification, adverse evaluation and explicit defeaters; do not infer acceptable real-world risk.",
+  "context": [
+    "Single-target longitudinal point-mass SiL",
+    "No real vehicles/hardware or physical independent actuation",
+    "Same automation in reviewer roles, no accredited independent assessment"
+  ],
+  "assumptions": [
+    "Trusted local FFI and shared simulation clock",
+    "Public test keys only",
+    "Declared artificial scenario distributions",
+    "No follower or injury model"
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Nominal configured decision thresholds are exercised; universal timely avoidance is not claimed.",
+      "status": "LIMITED",
+      "evidence": [
+        "ecu/tests/test_adas.cpp",
+        "results/v1.0.0/final_candidate.json"
+      ],
+      "counterexamples": [
+        "29/120 prior hold-outs collide",
+        "47/108 stratified final candidate cases collide"
+      ]
+    },
+    {
+      "id": "C2",
+      "claim": "Configured MAC/authorization/freshness rejection is supported under public-fixture-key assumptions.",
+      "status": "SCOPED_SUPPORTED",
+      "evidence": [
+        "tests/python/test_v4_security.py",
+        "results/v1.0.0/locked_candidate.json"
+      ],
+      "counterexamples": [
+        "Trusted-key compromise passes dangerous intent",
+        "Retained-state total loss permits replay"
+      ]
+    },
+    {
+      "id": "C3",
+      "claim": "Specified detectable sensor/communication/achieved-braking faults are indicated in tested budgets.",
+      "status": "SCOPED_SUPPORTED",
+      "evidence": [
+        "tests/python/test_v3_faults.py",
+        "results/v1.0.0/failure_analysis/review.md"
+      ],
+      "counterexamples": [
+        "Detection cannot restore missing bandwidth/physical braking"
+      ]
+    },
+    {
+      "id": "C4",
+      "claim": "Newest-authenticated route selection and bounded diagnostic recovery follow tested contracts.",
+      "status": "SCOPED_SUPPORTED",
+      "evidence": [
+        "tests/python/test_v1_assurance.py",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "counterexamples": [
+        "No aggregate collision reduction in final set",
+        "All usable paths stale/lost remain open"
+      ]
+    },
+    {
+      "id": "C5",
+      "claim": "Specified detectable invalid-input modes have defined native degradation behavior.",
+      "status": "LIMITED",
+      "evidence": [
+        "ecu/src/adas_ecu.cpp",
+        "results/v1.0.0/python_test_results.xml"
+      ],
+      "counterexamples": [
+        "Plausible errors and compromised intent can escape validity checks",
+        "Degraded/unavailable can still collide"
+      ]
+    },
+    {
+      "id": "C6",
+      "claim": "Perception/braking limitations are compared with preserved negative results.",
+      "status": "EVALUATION_SUPPORTED",
+      "evidence": [
+        "results/v1.0.0/perception_study.json",
+        "results/v1.0.0/evaluation.md"
+      ],
+      "counterexamples": [
+        "Temporal/corroboration can cause genuine-obstacle collisions",
+        "Common ghosts remain"
+      ]
+    },
+    {
+      "id": "C7",
+      "claim": "Evidence integrity, requirement/test linkage and known lifecycle/model gaps are reviewable.",
+      "status": "SCOPED_SUPPORTED",
+      "evidence": [
+        "results/v1.0.0/lifecycle_trace.json",
+        "results/v1.0.0/sysml-validation.log"
+      ],
+      "counterexamples": [
+        "PASS is not objective closure",
+        "Language validity is not engineering equivalence"
+      ]
+    }
+  ],
+  "open_limitations": [
+    "Physical/SOTIF/availability hazards unresolved",
+    "Partial structural coverage and ASan unvalidated",
+    "No ISO/AUTOSAR conformance, homologation or production-readiness claim"
+  ]
+}

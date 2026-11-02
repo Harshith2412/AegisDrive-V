@@ -1,0 +1,26 @@
+-- The CXX compiler identification is AppleClang 17.0.0.17000013
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/harshithmadhavaram/Downloads/aegisdrive-v/build/frozen/v0.3.0/build
+[  7%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/codec.cpp.o
+[ 14%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/adas_ecu.cpp.o
+[ 21%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/e2e.cpp.o
+[ 28%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/brake_ecu.cpp.o
+[ 35%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/body_ecu.cpp.o
+[ 42%] Linking CXX static library libaegis_ecu_core.a
+[ 42%] Built target aegis_ecu_core
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_body.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_adas.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_brake.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu.dir/ecu/src/aegis_c_api.cpp.o
+[ 78%] Linking CXX shared library libaegis_ecu.dylib
+[ 78%] Built target aegis_ecu
+[ 85%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_e2e_codec.cpp.o
+[ 92%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/third_party/minitest/minitest_main.cpp.o
+[100%] Linking CXX executable aegis_ecu_tests
+[100%] Built target aegis_ecu_tests

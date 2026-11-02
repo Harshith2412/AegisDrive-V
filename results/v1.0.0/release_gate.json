@@ -1,0 +1,22 @@
+{
+  "release": "1.0.0",
+  "status": "PASS: transparent educational research evidence gate; no automotive safety approval",
+  "cpp_tests": 46,
+  "python_tests": 54,
+  "requirements_with_passing_linked_tests": 53,
+  "lifecycle_gaps": 5,
+  "baseline_runs_reproduced": 846,
+  "individual_security_failure_reports": 18,
+  "final_case_manifest_count": 108,
+  "final_candidate_collisions": 47,
+  "executed_final_version_runs": 297,
+  "unsupported_v03_security_cases": 27,
+  "perception_study_runs": 200,
+  "locked_candidate_runs": 216,
+  "native_mcdc_conditions": {
+    "covered": 137,
+    "total": 195
+  },
+  "asan": "UNVALIDATED: runtime timeout",
+  "limitations": "Shared physical/security dependencies, ghosts, trusted compromise, stale/both-path loss, grip/ODD/short gaps, model/lifecycle gaps and simulation-only evidence remain open; no certification, homologation or standards compliance."
+}

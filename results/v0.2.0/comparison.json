@@ -1,0 +1,527 @@
+[
+  {
+    "scenario": "FI01",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": 110.0
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": 110.0
+    }
+  },
+  {
+    "scenario": "FI02",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 3.19,
+      "mean_first_brake_request_s": 4.183,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 3.19,
+      "mean_first_brake_request_s": 3.55,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": 120.0
+    }
+  },
+  {
+    "scenario": "S01",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 40.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 40.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "S02",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 0.575,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 3.085,
+      "mean_first_brake_request_s": 3.455,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 7.771,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 2.127,
+      "mean_first_brake_request_s": 2.127,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "S03",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.401,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 3.19,
+      "mean_first_brake_request_s": 4.183,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 4.888,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 3.19,
+      "mean_first_brake_request_s": 3.55,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "S04",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 1.018,
+      "aeb_retriggers_total": 20,
+      "mean_first_warning_s": 6.26,
+      "mean_first_brake_request_s": 6.947,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 20.263,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 4.665,
+      "mean_first_brake_request_s": 4.665,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.9_v10",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.816,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 11.787,
+      "mean_first_brake_request_s": 12.815,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.816,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 11.787,
+      "mean_first_brake_request_s": 12.815,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.9_v50",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.411,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.432,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 4.786,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.432,
+      "mean_first_brake_request_s": 1.8,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.9_v60",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.283,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 5.571,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 1.465,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.9_v80",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.184,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 8.165,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 0.8,
+      "mean_first_brake_request_s": 0.8,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.9_v81",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.5_v10",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.816,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 11.787,
+      "mean_first_brake_request_s": 12.815,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.816,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 11.787,
+      "mean_first_brake_request_s": 12.815,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.5_v50",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 0.526,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.432,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 4.786,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.432,
+      "mean_first_brake_request_s": 1.8,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.5_v60",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 5.571,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 1.465,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.5_v80",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 8.165,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 0.8,
+      "mean_first_brake_request_s": 0.8,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.5_v81",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.3_v10",
+    "baseline": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.629,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 11.787,
+      "mean_first_brake_request_s": 12.815,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 0,
+      "runs": 20,
+      "collision_rate": 0.0,
+      "min_separation_m": 2.629,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 11.787,
+      "mean_first_brake_request_s": 12.815,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.3_v50",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.432,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.432,
+      "mean_first_brake_request_s": 1.8,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.3_v60",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 1.465,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.3_v80",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 1.43,
+      "mean_first_brake_request_s": 2.42,
+      "mean_braking_latency_ms": 10.0,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": 0.8,
+      "mean_first_brake_request_s": 0.8,
+      "mean_braking_latency_ms": 20.0,
+      "mean_fault_detection_latency_ms": null
+    }
+  },
+  {
+    "scenario": "B_mu0.3_v81",
+    "baseline": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    },
+    "modified": {
+      "collisions": 20,
+      "runs": 20,
+      "collision_rate": 1.0,
+      "min_separation_m": 0.0,
+      "aeb_retriggers_total": 0,
+      "mean_first_warning_s": null,
+      "mean_first_brake_request_s": null,
+      "mean_braking_latency_ms": null,
+      "mean_fault_detection_latency_ms": null
+    }
+  }
+]

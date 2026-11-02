@@ -1,0 +1,39 @@
+{
+  "adas_ecu.cpp": {
+    "line_pct": 100.0,
+    "lines": 215,
+    "branch_taken_pct": 78.81,
+    "branches": 236
+  },
+  "body_ecu.cpp": {
+    "line_pct": 100.0,
+    "lines": 43,
+    "branch_taken_pct": 83.82,
+    "branches": 68
+  },
+  "brake_ecu.cpp": {
+    "line_pct": 100.0,
+    "lines": 76,
+    "branch_taken_pct": 73.91,
+    "branches": 92
+  },
+  "codec.cpp": {
+    "line_pct": 100.0,
+    "lines": 60,
+    "branch_taken_pct": 75.0,
+    "branches": 72
+  },
+  "e2e.cpp": {
+    "line_pct": 100.0,
+    "lines": 31,
+    "branch_taken_pct": 100.0,
+    "branches": 16
+  },
+  "TOTAL": {
+    "line_pct": 100.0,
+    "lines": 425,
+    "branch_taken_pct": 78.72,
+    "branches": 484
+  },
+  "_note": "GCC gcov on C++ unit tests only. Branch % = branches taken at least once. Includes compiler-generated branches. MC/DC not measured."
+}

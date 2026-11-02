@@ -1,0 +1,20 @@
+@startuml
+!pragma layout smetana
+rectangle "C0: Reviewable research case\nNOT a safe-vehicle claim" as C0 #DDEEFF
+rectangle "S1: Reproduce + verify mechanisms +\nevaluate counterexamples + disclose gaps" as S1
+C0 --> S1
+rectangle "C1: Scoped decision evidence\nC2: Configured rejection evidence\nC3: Detectable fault indication" as C123
+rectangle "C4: Tested recovery contracts\nC5: Defined detectable degradation\nC6: Perception tradeoff evaluation\nC7: Trace/model/evidence integrity" as C4567
+S1 --> C123
+S1 --> C4567
+rectangle "E1: 846 baseline reproductions\nE2: unit/integration/property results\nE3: individual collision timelines" as E123 #DDFFDD
+rectangle "E4: final stratified comparison\nE5: controlled SOTIF study\nE6: lifecycle gaps + semantic validation" as E456 #DDFFDD
+C123 --> E123
+C4567 --> E456
+rectangle "D: stale/both-path loss, shared actuator/ECU,\nghosts, trusted compromise, partial coverage\nand unvalidated ASan" as D #FFDDDD
+C0 ..> D : explicit defeaters
+note bottom of S1
+Public test keys, trusted local FFI/clock, point-mass SiL.
+No certified independent assessor or real-world risk acceptance.
+end note
+@enduml

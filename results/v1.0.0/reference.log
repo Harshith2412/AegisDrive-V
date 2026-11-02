@@ -1,0 +1,8 @@
+{
+  "collision": false,
+  "min_gap_m": 5.28906319047897,
+  "newer_backup_selected_cycles": 1294,
+  "first_request_s": 3.53,
+  "first_achieved_brake_s": 3.56,
+  "evidence": "results/v1.0.0/reference/result.json"
+}

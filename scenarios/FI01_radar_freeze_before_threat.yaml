@@ -1,0 +1,13 @@
+id: FI01
+title: "Fault injection: radar data freezes before the threat develops (H5)"
+description: >
+  Same geometry as S03, but the radar stops updating at t=2.0 s (frozen value and
+  timestamp). Verifies stale-data detection and the resulting loss of AEB availability.
+requirement_links: [FSR-001, TSR-001, BCM-REQ-004]
+duration_s: 15
+dt_s: 0.01
+road: {mu: 0.9}
+ego: {initial_speed_kph: 50}
+lead: {initial_speed_kph: 0, gap0_m: 80, events: []}
+faults: [{type: radar_freeze, t_s: 2.0}]
+expected: {degraded: true, brake_request: false, unavailable_indicated: true}

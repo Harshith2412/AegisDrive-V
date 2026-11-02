@@ -1,0 +1,36 @@
+A01 A False True {} None
+A01 B False False {'ACCEPT': 7693, 'UNAUTHORIZED': 1301} None
+A01 C False False {'ACCEPT': 7693, 'UNAUTHORIZED': 1301} None
+A02 A False False {} 1300
+A02 B True False {'ACCEPT': 3074, 'STALE': 376} None
+A02 C True False {'ACCEPT': 3074, 'STALE': 376} None
+A03 A False False {} 1300
+A03 B False False {'ACCEPT': 7694, 'UNAUTHORIZED': 1300} None
+A03 C False False {'ACCEPT': 7694, 'UNAUTHORIZED': 1300} None
+A04 A False False {} 1300
+A04 B False False {'ACCEPT': 7694, 'AUTH': 1300} None
+A04 C False False {'ACCEPT': 7694, 'AUTH': 1300} None
+A05 A False False {} 1280
+A05 B True False {'ACCEPT': 3074, 'STALE': 356} None
+A05 C True False {'ACCEPT': 3074, 'STALE': 356} None
+A06 A False False {} 1300
+A06 B True False {'ACCEPT': 3074, 'GAP': 376} None
+A06 C False False {'ACCEPT': 8994, 'RESYNC': 1} 1300
+A07 A False False {} None
+A07 B False False {'ACCEPT': 5070, 'STALE': 2507, 'GAP': 1251} None
+A07 C False False {'ACCEPT': 6321, 'STALE': 2507, 'RESYNC': 1} None
+A08 A False False {} 1294
+A08 B False False {'ACCEPT': 8988} 1294
+A08 C False False {'ACCEPT': 8988} 1294
+A09 A False False {} 650
+A09 B False False {'ACCEPT': 8344, 'REPLAY': 650} None
+A09 C False False {'ACCEPT': 8344, 'REPLAY': 650} None
+A10 A False False {} 1300
+A10 B False False {'ACCEPT': 8194, 'REPLAY': 800} 1100
+A10 C False False {'ACCEPT': 8914, 'REPLAY': 80, 'RESYNC': 4} 1280
+A11 A True False {} None
+A11 B True False {'ACCEPT': 3450} None
+A11 C True False {'ACCEPT': 3450} None
+A12 A False False {} 1300
+A12 B False False {'ACCEPT': 8994} 1300
+A12 C False False {'ACCEPT': 8994} 1300

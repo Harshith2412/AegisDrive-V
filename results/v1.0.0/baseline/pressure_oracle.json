@@ -1,0 +1,11 @@
+{
+  "current_queued": 0,
+  "historical_peak": 25,
+  "observed_events": [
+    {
+      "reason": "BUS_PRESSURE",
+      "now_ms": 0
+    }
+  ],
+  "finding": "Historical peak produces current pressure event with empty queue"
+}

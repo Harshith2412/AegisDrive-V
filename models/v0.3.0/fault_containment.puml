@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+rectangle "Perception domain\nshared scene / time / simulation" {
+ component Radar
+ component Camera
+ component Fusion
+ Radar --> Fusion : sampled data
+ Camera --> Fusion : delayed sampled data
+}
+component ADAS
+Fusion --> ADAS : usable fused target or unavailable
+rectangle "Communication queues\nmodeled separately, independence unproven" {
+ component Primary
+ component Backup
+}
+ADAS --> Primary
+ADAS --> Backup
+rectangle "Shared actuation domain\nNOT fault-independent backup braking" {
+ component "Brake ECU\nseparate E2E receiver per channel" as Brake
+ component "Single actuator" as Actuator
+ Brake --> Actuator
+}
+Primary --> Brake
+Backup --> Brake
+component "Friction-limited vehicle plant" as Vehicle
+Actuator --> Vehicle
+Vehicle --> ADAS : previous achieved deceleration (ideal IMU)
+Brake --> ADAS : status / accepted-counter echo
+@enduml

@@ -1,0 +1,9 @@
+persistent_radar_ghost
+persistent_common_ghost
+brief_ghost
+genuine_close_camera_failed
+genuine_occluded
+genuine_low_confidence
+genuine_nominal
+genuine_fog
+locked 216

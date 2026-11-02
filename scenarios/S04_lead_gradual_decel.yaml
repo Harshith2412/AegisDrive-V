@@ -1,0 +1,10 @@
+id: S04
+title: Leading vehicle decelerates gradually
+description: Both at 50 km/h, 30 m gap; lead decelerates at -1.5 m/s^2 from t=2 s to standstill.
+requirement_links: [SYS-REQ-003]
+duration_s: 20
+dt_s: 0.01
+road: {mu: 0.9}
+ego: {initial_speed_kph: 50}
+lead: {initial_speed_kph: 50, gap0_m: 30, events: [{t_s: 2.0, accel_mps2: -1.5}]}
+expected: {collision: false}

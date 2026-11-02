@@ -1,0 +1,13 @@
+id: FI02
+title: "Fault injection: BRAKE_REQ frames lost during AEB braking (H6)"
+description: >
+  Same geometry as S03; from t=4.2 s (after AEB braking has started) every BRAKE_REQ
+  frame is dropped on the bus. Verifies the Brake ECU command timeout.
+requirement_links: [BRK-REQ-002, TSR-003]
+duration_s: 15
+dt_s: 0.01
+road: {mu: 0.9}
+ego: {initial_speed_kph: 50}
+lead: {initial_speed_kph: 0, gap0_m: 80, events: []}
+faults: [{type: drop_brake_req, t_s: 4.2}]
+expected: {brake_timeout: true}

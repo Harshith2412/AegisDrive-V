@@ -1,0 +1,10 @@
+id: S03
+title: Ego vehicle approaches a stationary vehicle
+description: Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver.
+requirement_links: [SYS-REQ-001]
+duration_s: 15
+dt_s: 0.01
+road: {mu: 0.9}
+ego: {initial_speed_kph: 50}
+lead: {initial_speed_kph: 0, gap0_m: 80, events: []}
+expected: {collision: false, brake_request: true}

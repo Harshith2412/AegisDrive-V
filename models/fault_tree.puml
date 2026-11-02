@@ -1,0 +1,18 @@
+@startuml
+!pragma layout smetana
+rectangle "T1: rear-end impact despite enabled AEB\nOR (qualitative, no probabilities)" as Top
+rectangle "Insufficient threat information\nOR" as A
+rectangle "Insufficient delivered deceleration\nOR" as B
+rectangle "Premature release then renewed closing" as C
+rectangle "Freeze / missed target / ODD exit" as A1
+rectangle "Command loss / actuator failure /\nadhesion / late demand" as B1
+Top --> A
+Top --> B
+Top --> C
+A --> A1
+B --> B1
+note bottom of Top
+Common causes and driver behavior invalidate independence assumptions.
+This model has no quantitative fault probabilities.
+end note
+@enduml

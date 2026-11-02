@@ -1,0 +1,7 @@
+{
+  "scope": "Review-specific project allocations, not normative risk classifications or new ASILs",
+  "scenarios": [
+    {"id":"REV-T01","scenario":"Older but still authenticated/age-valid primary overrides newer authenticated backup","asset":"AS01","goal":"CG02","requirements":["REC-501","SEC-402","BRK-301"],"tests":["REV-UT-001","REV-ST-001"],"mitigation":"Choose latest authenticated same-producer issued time; do not compare unverified admission timestamps","residual":"Both paths stale/lost, compromised producer and trusted-clock failure remain open"},
+    {"id":"REV-T02","scenario":"One historical pressure peak generates repeated current-pressure diagnostics after queues clear","asset":"AS05","goal":"CG04","requirements":["REC-502","SEC-405"],"tests":["REV-UT-002"],"mitigation":"Current backlog/new drops and explicit 100 ms clear-dwell state machine","residual":"DTC remains latched; diagnostic recovery does not establish safe actuation or malicious-cause identification"}
+  ]
+}

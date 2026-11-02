@@ -1,0 +1,1 @@
+{'engine': 'seeded Python mutation/random parser fuzzing', 'seed': 440031, 'executions': 20000, 'unexpected_acceptances': 0, 'native_libfuzzer': 'Build attempted, unavailable AppleClang libclang_rt.fuzzer_osx.a; see fuzz-build.log', 'limitation': 'No crash in finite inputs is not proof of parser safety; not coverage-guided fuzzing'}

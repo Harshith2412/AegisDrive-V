@@ -1,0 +1,12 @@
+# Versions used to produce the v0.1.0 evidence are recorded in results/environment.json.
+numpy>=1.26
+matplotlib>=3.8
+PyYAML>=6.0
+pytest>=8.0
+python-can>=4.3   # optional: PythonCanBus adapter (untested in v0.1.0)
+
+hypothesis>=6.0 # property-based verification in v0.3.0
+
+coverage>=7.0 # Python security branch coverage; distinct from native MC/DC
+
+pip-audit>=2.0 # review-time public dependency advisory query, not ECU runtime

@@ -1,0 +1,13 @@
+id: S02
+title: Leading vehicle brakes suddenly
+description: >
+  Both vehicles at 50 km/h, 20 m gap (1.44 s headway). Lead brakes at -6 m/s^2 at t=2 s
+  to standstill. The AEB TTC model assumes constant lead speed (LIM-ALG-01), so this
+  scenario probes that limitation.
+requirement_links: [SYS-REQ-003]
+duration_s: 15
+dt_s: 0.01
+road: {mu: 0.9}
+ego: {initial_speed_kph: 50}
+lead: {initial_speed_kph: 50, gap0_m: 20, events: [{t_s: 2.0, accel_mps2: -6.0}]}
+expected: {collision: false, brake_request: true}

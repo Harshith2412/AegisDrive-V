@@ -1,0 +1,38 @@
+{
+  "uml": [
+    {
+      "path": "models/adas_states.puml",
+      "sha256": "f665e08a39929b599cd720b78e9fcdd940cf3ccd046ae2d417981cf365434902",
+      "svg": "models/adas_states.svg",
+      "validation": "PlantUML parser and SVG renderer passed"
+    },
+    {
+      "path": "models/context.puml",
+      "sha256": "9c004b28d1cb02c9701b44b2d9beea4bf5842af7049a169ecbb2a29124e2538c",
+      "svg": "models/context.svg",
+      "validation": "PlantUML parser and SVG renderer passed"
+    },
+    {
+      "path": "models/fault_tree.puml",
+      "sha256": "5ee1bb5c58b84bbfaa48cd537d19def5a997062be7c9e6431c90ef3c7130ae38",
+      "svg": "models/fault_tree.svg",
+      "validation": "PlantUML parser and SVG renderer passed"
+    },
+    {
+      "path": "models/interfaces.puml",
+      "sha256": "04dbb11bdc4b7d68aa705dd2fcf1455857317e7d69d13baee796993e2e063fb8",
+      "svg": "models/interfaces.svg",
+      "validation": "PlantUML parser and SVG renderer passed"
+    },
+    {
+      "path": "models/sequence.puml",
+      "sha256": "ed9e6b8ef8b971235811c9c0c15c145f52bbe189c75b127676b7378338ea6961",
+      "svg": "models/sequence.svg",
+      "validation": "PlantUML parser and SVG renderer passed"
+    }
+  ],
+  "sysml": {
+    "path": "models/aeb.sysml",
+    "validation": "UNVALIDATED: no SysML v2 parser installed"
+  }
+}

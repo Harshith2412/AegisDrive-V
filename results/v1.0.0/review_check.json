@@ -1,0 +1,13 @@
+{
+  "historical_files_checked": 358,
+  "native_source_files_unchanged": 13,
+  "baseline_reproduced": 846,
+  "individual_failures": 18,
+  "linked_requirements": 53,
+  "lifecycle_gaps": 5,
+  "model_files_validated": 4,
+  "legal_state_edges": 26,
+  "executed_final_version_runs": 297,
+  "unsupported_v03_security_records": 27,
+  "note": "Integrity/link/semantic review checks only; unsafe outcomes remain explicit."
+}

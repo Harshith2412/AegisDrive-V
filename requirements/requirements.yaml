@@ -1,0 +1,1287 @@
+# v1.0.0 current requirement database; historical formatting/content archived unchanged.
+# VERIFIED is linked-test status, not full vehicle safety objective closure.
+external_sources:
+  CHARTER-G1: "docs/00_project_charter.md \u2014 goal G1: AEB function avoids/mitigates\
+    \ rear-end collisions in the ODD"
+  CHARTER-G2: "docs/00_project_charter.md \u2014 goal G2: AEB does not intervene without\
+    \ a collision threat"
+  CHARTER-G3: "docs/00_project_charter.md \u2014 goal G3: braking state is signalled\
+    \ to following traffic"
+  CHARTER-G4: "docs/00_project_charter.md \u2014 goal G4: simulation evidence is reproducible\
+    \ and trustworthy"
+  HAZ-H3-PROV: "Provisional hazard H3 (Brake ECU accepts invalid command) \u2014 HARA\
+    \ not yet performed"
+  HAZ-H4-PROV: "Provisional hazard H4 (brake lamps not activated) \u2014 HARA not\
+    \ yet performed"
+  HAZ-H5-PROV: "Provisional hazard H5 (ADAS continues using frozen sensor data) \u2014\
+    \ HARA not yet performed"
+  HAZ-H6-PROV: "Provisional hazard H6 (safety-critical communication unavailable)\
+    \ \u2014 HARA not yet performed"
+requirements:
+- id: SYS-REQ-001
+  title: Stationary target collision avoidance (nominal)
+  description: 'With the AEB function enabled, an inattentive driver, a dry road (mu
+    >= 0.8) and a stationary in-path vehicle, the system shall avoid collision for
+    ego speeds of 20, 30, 40 and 50 km/h.
+
+    '
+  rationale: Core AEB benefit for the vertical slice; speeds chosen inside the 10-80
+    km/h activation window.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Radar-only perception with nominal noise
+  - straight road
+  - no ego driver input (DRV-A-01)
+  acceptance_criteria: Zero collisions over 20 seeds at each speed point in closed-loop
+    SiL (80 runs).
+  allocated_to:
+  - ADAS ECU
+  - Brake ECU
+  verification_method: Test (system SiL)
+  implementation:
+  - ecu/src/adas_ecu.cpp
+  - ecu/src/brake_ecu.cpp
+  tests:
+  - ST-SLICE-001
+  - ST-SLICE-002
+  verification_status: computed
+- id: SYS-REQ-002
+  title: No intervention without a collision threat
+  description: 'In steady following at equal speed with a time headway >= 2.0 s, the
+    system shall issue neither a forward collision warning nor a brake request.
+
+    '
+  rationale: Unnecessary braking is itself hazardous (provisional hazard H2).
+  parent:
+  - CHARTER-G2
+  assumptions:
+  - Nominal radar noise
+  acceptance_criteria: Scenario S01 over 10 seeds - zero warnings, zero brake requests.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (system SiL)
+  implementation:
+  - ecu/src/adas_ecu.cpp
+  tests:
+  - ST-SLICE-003
+  verification_status: computed
+- id: SYS-REQ-003
+  title: Lead-vehicle braking scenarios
+  description: 'The system shall avoid collision in scenario S02 (lead brakes at 6
+    m/s^2 from 50 km/h, 20 m gap) and scenario S04 (lead brakes at 1.5 m/s^2 from
+    50 km/h, 30 m gap) on a dry road.
+
+    '
+  rationale: Moving-target braking is the dominant real-world AEB case and stresses
+    the constant-velocity TTC model.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Lead deceleration is friction-limited
+  - inattentive ego driver
+  acceptance_criteria: Zero collisions over 10 seeds for each of S02 and S04.
+  allocated_to:
+  - ADAS ECU
+  - Brake ECU
+  verification_method: Test (system SiL)
+  implementation:
+  - ecu/src/adas_ecu.cpp
+  tests:
+  - ST-SLICE-004
+  verification_status: computed
+- id: ADAS-REQ-001
+  title: Time-to-collision computation
+  description: 'The ADAS ECU shall compute TTC = range / closing_speed when closing_speed
+    > 0.5 m/s, and TTC = +infinity otherwise (closing_speed = -range_rate).
+
+    '
+  rationale: Below 0.5 m/s closing, TTC becomes numerically large and noise-dominated.
+  parent:
+  - SYS-REQ-001
+  assumptions:
+  - Constant relative velocity over the prediction horizon (LIM-ALG-01)
+  acceptance_criteria: Absolute error <= 1e-9 s for representative inputs; boundary
+    0.5 m/s yields +inf.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#compute_ttc
+  tests:
+  - UT-ADAS-001
+  - IT-ABI-003
+  verification_status: computed
+- id: ADAS-REQ-002
+  title: Forward collision warning threshold
+  description: 'In MONITORING, the ADAS ECU shall enter WARNING in the same 10 ms
+    cycle in which TTC <= 2.6 s, and return to MONITORING only when TTC > 2.9 s (0.3
+    s hysteresis).
+
+    '
+  rationale: 'Warning precedes braking by ~1 s to give a driver the opportunity to
+    react. 2.6 s is a project design parameter to be re-calibrated by the SOTIF sweeps
+    (Phase 6); it is not taken from a regulation.
+
+    '
+  parent:
+  - SYS-REQ-001
+  - SYS-REQ-002
+  assumptions:
+  - 10 ms ADAS task period
+  acceptance_criteria: TTC 2.61 s -> MONITORING; TTC 2.60 s -> WARNING; TTC 2.85 s
+    stays WARNING; 2.95 s -> MONITORING.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit, boundary values)
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests:
+  - UT-ADAS-004
+  - ST-SLICE-001
+  - ST-SLICE-003
+  verification_status: computed
+- id: ADAS-REQ-003
+  title: Automatic emergency braking threshold and demand
+  description: 'The ADAS ECU shall enter BRAKING in the same cycle in which TTC <=
+    1.6 s and shall request a deceleration of clamp(1.2 * a_req, 4.0, 9.0) m/s^2,
+    where a_req = closing^2 / (2 * max(range - 2.0 m, 0.1 m)).
+
+    '
+  rationale: 'a_req is the constant deceleration that cancels the closing speed 2
+    m before the object; the 1.2 gain covers actuator build-up (tau 0.15 s); 4.0 m/s^2
+    floor gives a perceptible intervention; 9.0 m/s^2 ceiling stays within the brake
+    command range. Maximum braking is NOT applied by default.
+
+    '
+  parent:
+  - SYS-REQ-001
+  assumptions:
+  - Constant object speed during prediction
+  acceptance_criteria: TTC-only unit boundaries at 1.61/1.60 s with envelope disabled;
+    clamp at both ends; default S03 envelope initiates before TTC 1.6 s.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit + system)
+  implementation:
+  - ecu/src/adas_ecu.cpp#compute_required_decel
+  tests:
+  - UT-ADAS-002
+  - UT-ADAS-005
+  - ST-SLICE-001
+  verification_status: computed
+- id: ADAS-REQ-004
+  title: Activation speed window
+  description: 'The ADAS ECU shall only start a warning or braking intervention when
+    ego speed is within [10, 80] km/h; outside the window it shall remain in STANDBY.
+    An intervention already in BRAKING shall continue below 10 km/h until standstill.
+
+    '
+  rationale: Defines the slice ODD (docs/03); releasing braking at 10 km/h would leave
+    the residual collision unmitigated.
+  parent:
+  - SYS-REQ-001
+  assumptions:
+  - Ego speed signal valid and fresh
+  acceptance_criteria: TTC 0.5 s at 7.2 km/h and 90 km/h -> no warning/braking; braking
+    continues at 3.6 km/h.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests:
+  - UT-ADAS-003
+  - UT-ADAS-006
+  - UT-ADAS-007
+  - UT-V3-003
+  verification_status: computed
+- id: ADAS-REQ-005
+  title: Standstill hold and release
+  description: 'After AEB braking reaches standstill (ego speed <= 0.1 m/s), the ADAS
+    ECU shall keep the brake request for 2.0 s, then transition to STANDBY and release
+    the request.
+
+    '
+  rationale: Prevents roll-on immediately after the stop; 2.0 s is a project assumption
+    for driver take-over (DRV-A-02).
+  parent:
+  - SYS-REQ-001
+  assumptions:
+  - DRV-A-02 driver holds the vehicle after release
+  acceptance_criteria: Still BRAKING at 1990 ms of standstill; STANDBY with zero request
+    at 2000 ms.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests:
+  - UT-ADAS-007
+  - ST-SLICE-001
+  verification_status: computed
+- id: ADAS-REQ-006
+  title: Abort braking when the threat clears
+  description: 'While BRAKING and not at standstill, release requires 500 ms of object
+    absence or opening faster than 0.5 m/s, distance beyond envelope plus margin,
+    and filtered lead acceleration at least -0.3 m/s^2. Then transition to MONITORING.
+
+    '
+  rationale: Limits the duration of unnecessary braking (provisional H2) after e.g.
+    the lead accelerates away.
+  parent:
+  - SYS-REQ-002
+  assumptions:
+  - Single relevant target identity is stable
+  - New sample timestamps for lead-speed filtering
+  acceptance_criteria: Opening object - still BRAKING at 490 ms, MONITORING at 500
+    ms.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests:
+  - UT-ADAS-008
+  verification_status: computed
+- id: ADAS-REQ-007
+  title: State machine integrity
+  description: 'The ADAS ECU shall only perform the 26 state transitions defined in
+    docs/05_vertical_slice_design.md; any other requested transition shall be rejected,
+    counted, and latched as DTC ILLEGAL_TRANSITION.
+
+    '
+  rationale: Protects against design/implementation errors driving the function into
+    undefined behaviour.
+  parent:
+  - SYS-REQ-001
+  - SYS-REQ-002
+  assumptions: []
+  acceptance_criteria: 49-entry table matches documentation; illegal requests rejected;
+    zero illegal transitions in all scenarios.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit + system)
+  implementation:
+  - ecu/src/adas_ecu.cpp#kAllowed
+  - ecu/src/adas_ecu.cpp#request_transition
+  tests:
+  - UT-ADAS-003
+  - UT-ADAS-014
+  - IT-ABI-004
+  - ST-SLICE-006
+  verification_status: computed
+- id: ADAS-REQ-008
+  title: ADAS CAN transmission
+  description: 'Every 10 ms cycle the ADAS ECU shall transmit BRAKE_REQ (0x120) and
+    ADAS_STATUS (0x130), each protected by CRC-8 and a 4-bit alive counter incremented
+    by one per frame.
+
+    '
+  rationale: Periodic, protected transmission enables timeout and corruption detection
+    at receivers.
+  parent:
+  - TSR-002
+  assumptions: []
+  acceptance_criteria: 20 consecutive cycles - valid CRCs, counters increment by 1
+    mod 16, decoded state equals output.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#finalize
+  - ecu/src/codec.cpp
+  tests:
+  - UT-ADAS-016
+  - UT-E2E-004
+  verification_status: computed
+- id: ADAS-REQ-009
+  title: Input plausibility
+  description: 'The ADAS ECU shall treat inputs as invalid (enter DEGRADED, release
+    brake request, set DTC) if: range outside [0, 200] m, |range rate| > 80 m/s, ego
+    speed outside [0, 70] m/s, any value non-finite, sensor_ok = 0, or a timestamp
+    later than the current time.
+
+    '
+  rationale: Physical bounds of the slice ODD with margin; prevents acting on corrupted
+    values.
+  parent:
+  - FSR-001
+  assumptions: []
+  acceptance_criteria: Each listed violation produces DEGRADED and the matching DTC
+    bit.
+  allocated_to:
+  - ADAS ECU (Safety Supervisor function)
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#check_inputs
+  tests:
+  - UT-ADAS-011
+  - UT-ADAS-017
+  verification_status: computed
+- id: ADAS-REQ-010
+  title: Persistent degradation to FAULT
+  description: 'If DEGRADED persists for >= 1000 ms, the ADAS ECU shall enter FAULT,
+    latch DTC PERSISTENT_DEGRADED, and leave FAULT only through DISABLED (function
+    switched off and on).
+
+    '
+  rationale: Avoids indefinite toggling; makes a lasting failure visible and requires
+    an explicit re-initialisation.
+  parent:
+  - FSR-001
+  assumptions: []
+  acceptance_criteria: DEGRADED at 990 ms, FAULT at 1000 ms; FAULT persists with valid
+    inputs; re-enable recovers.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#step
+  tests:
+  - UT-ADAS-012
+  verification_status: computed
+- id: ADAS-REQ-011
+  title: Recovery from DEGRADED
+  description: The ADAS ECU shall leave DEGRADED only after 10 consecutive cycles
+    (100 ms) of valid inputs.
+  rationale: Debounces intermittent faults.
+  parent:
+  - FSR-001
+  assumptions: []
+  acceptance_criteria: DEGRADED after 9 valid cycles; active after the 10th.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#step
+  tests:
+  - UT-ADAS-013
+  verification_status: computed
+- id: ADAS-REQ-012
+  title: Configuration validation
+  description: 'The ADAS ECU shall validate its calibration at construction; with
+    an invalid calibration it shall remain permanently in FAULT with DTC INVALID_CONFIG
+    and never request braking.
+
+    '
+  rationale: Calibration errors are a classic source of systematic faults.
+  parent:
+  - FSR-001
+  assumptions: []
+  acceptance_criteria: ttc_brake > ttc_warning -> FAULT, no brake request, remains
+    FAULT when disabled.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/adas_ecu.cpp#adas_config_valid
+  tests:
+  - UT-ADAS-015
+  - UT-V3-010
+  verification_status: computed
+- id: FSR-001
+  title: (PROVISIONAL) Detect stale or frozen perception data
+  description: 'The AEB function shall detect perception or ego-speed data that is
+    stale, frozen or implausible and shall then stop issuing new brake requests, release
+    any active request, and indicate function unavailability to the driver.
+
+    '
+  rationale: 'Addresses provisional hazard H5. Releasing (rather than holding or maximising)
+    braking on invalid data is a deliberate, provisional choice: acting on frozen
+    data may cause H2 (unnecessary braking), while releasing may cause H1 (missed
+    braking). The trade-off must be re-assessed in the HARA/FSC (Phase 3).
+
+    '
+  parent:
+  - HAZ-H5-PROV
+  assumptions:
+  - Driver is warned and remains responsible
+  acceptance_criteria: See TSR-001 and FI01 - detection within 160 ms of the last
+    valid sample, no brake request, unavailability shown.
+  allocated_to:
+  - ADAS ECU
+  - Body Control Module
+  verification_method: Test (unit + fault injection)
+  implementation:
+  - ecu/src/adas_ecu.cpp#check_inputs
+  - ecu/src/body_ecu.cpp
+  tests:
+  - UT-ADAS-009
+  - UT-ADAS-010
+  - UT-SIM-004
+  - ST-FI-001
+  verification_status: computed
+- id: TSR-001
+  title: (PROVISIONAL) Timestamp freshness monitoring
+  description: 'The ADAS ECU shall classify a perception or ego-speed sample as stale
+    when (now - sample timestamp) > 150 ms.
+
+    '
+  rationale: Radar period 50 ms; 150 ms tolerates two lost samples plus latency before
+    declaring stale.
+  parent:
+  - FSR-001
+  assumptions:
+  - Common time base between sensor and ECU (LIM-TIME-01)
+  acceptance_criteria: Age 150 ms fresh, 151 ms stale (unit); FI01 DEGRADED <= 160
+    ms after last valid sample timestamp.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit + fault injection)
+  implementation:
+  - ecu/src/adas_ecu.cpp#fresh
+  tests:
+  - UT-ADAS-009
+  - UT-ADAS-010
+  - UT-ADAS-017
+  - ST-FI-001
+  verification_status: computed
+- id: TSR-002
+  title: (PROVISIONAL) E2E protection of safety-relevant frames
+  description: 'Safety-relevant frames (0x120, 0x130, 0x220) shall carry a CRC-8 (SAE
+    J1850 polynomial, over DataID and payload) and a 4-bit alive counter; receivers
+    shall reject CRC errors, repeated counters and counter jumps > 2.
+
+    '
+  rationale: Detects corruption, repetition and loss (communication faults). NOT a
+    security control.
+  parent:
+  - HAZ-H3-PROV
+  - HAZ-H6-PROV
+  assumptions:
+  - Faults are random/systematic
+  - not intentional (attacks are Phase 7)
+  acceptance_criteria: All 64 single-bit flips detected; sequence rules per unit tests;
+    corrupted frames cause no actuation.
+  allocated_to:
+  - ADAS ECU
+  - Brake ECU
+  - Body Control Module
+  verification_method: Test (unit + integration)
+  implementation:
+  - ecu/src/e2e.cpp
+  tests:
+  - UT-E2E-002
+  - UT-E2E-003
+  - ST-INV-001
+  verification_status: computed
+- id: TSR-003
+  title: (PROVISIONAL) Brake command timeout
+  description: The Brake ECU shall release the AEB deceleration demand when no valid
+    BRAKE_REQ has been received for > 100 ms.
+  rationale: 10 missed 10 ms frames. Falls back to driver-only braking (no automatic
+    hold on lost commands).
+  parent:
+  - HAZ-H6-PROV
+  assumptions: []
+  acceptance_criteria: Demand held at 100 ms, released at 101 ms (unit); FI02 timeout
+    <= 110 ms after last delivered frame.
+  allocated_to:
+  - Brake ECU
+  verification_method: Test (unit + fault injection)
+  implementation:
+  - ecu/src/brake_ecu.cpp#step
+  tests:
+  - UT-BRK-003
+  - ST-FI-002
+  verification_status: computed
+- id: BRK-REQ-001
+  title: Brake command validation
+  description: 'The Brake ECU shall act only on BRAKE_REQ frames with ID 0x120, DLC
+    8, valid CRC, counter delta 1..2, zero reserved bits, deceleration <= 10.0 m/s^2
+    and consistent active/deceleration fields; the first frame after start-up is used
+    only for counter synchronisation.
+
+    '
+  rationale: Prevents actuation on corrupted or malformed commands (provisional H3).
+  parent:
+  - TSR-002
+  assumptions: []
+  acceptance_criteria: Each rejection class is detected with the correct reason; previous
+    valid command retained.
+  allocated_to:
+  - Brake ECU
+  verification_method: Test (unit + integration)
+  implementation:
+  - ecu/src/brake_ecu.cpp#validate
+  - ecu/src/codec.cpp#decode_brake_request
+  tests:
+  - UT-BRK-001
+  - UT-BRK-002
+  - UT-BRK-007
+  - UT-E2E-004
+  - UT-E2E-005
+  - ST-INV-001
+  verification_status: computed
+- id: BRK-REQ-002
+  title: Brake command timeout behaviour
+  description: On command timeout the Brake ECU shall release the AEB demand and report
+    status TIMEOUT.
+  rationale: Implements TSR-003.
+  parent:
+  - TSR-003
+  assumptions: []
+  acceptance_criteria: Status TIMEOUT after > 100 ms without a valid frame.
+  allocated_to:
+  - Brake ECU
+  verification_method: Test (unit + fault injection)
+  implementation:
+  - ecu/src/brake_ecu.cpp#step
+  tests:
+  - UT-BRK-003
+  - ST-FI-002
+  verification_status: computed
+- id: BRK-REQ-003
+  title: Brake demand arbitration
+  description: The Brake ECU shall apply the larger of the driver demand and the valid
+    AEB demand; non-finite driver demand is treated as 0.
+  rationale: AEB must never reduce braking the driver is already applying.
+  parent:
+  - SYS-REQ-001
+  assumptions:
+  - Driver pedal demand expressed as deceleration magnitude
+  acceptance_criteria: max() selection in both directions; NaN pedal ignored.
+  allocated_to:
+  - Brake ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/brake_ecu.cpp#step
+  tests:
+  - UT-BRK-004
+  verification_status: computed
+- id: BRK-REQ-004
+  title: Actuator model
+  description: The simulated brake actuator shall follow a first-order lag with tau
+    = 0.15 s; invalid dt (non-finite, <= 0, > 0.1 s) shall freeze the actuator state.
+  rationale: Simplified pressure build-up; tau is an assumed order-of-magnitude value,
+    not a measured characteristic.
+  parent:
+  - SYS-REQ-001
+  assumptions:
+  - LIM-ACT-01 no hydraulic or ABS dynamics
+  acceptance_criteria: 63.2 % of step after 150 ms (1e-9 tolerance).
+  allocated_to:
+  - Brake ECU
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/brake_ecu.cpp#step
+  tests:
+  - UT-BRK-005
+  verification_status: computed
+- id: BRK-REQ-005
+  title: Brake status reporting
+  description: Every cycle the Brake ECU shall transmit BRAKE_STATUS (0x220) with
+    brake_active = (actual decel >= 0.3 m/s^2), E2E-protected.
+  rationale: Feeds the Body ECU brake lamp function.
+  parent:
+  - CHARTER-G3
+  assumptions: []
+  acceptance_criteria: Decoded frame matches internal state within 0.01 m/s^2 resolution.
+  allocated_to:
+  - Brake ECU
+  verification_method: Test (unit + system)
+  implementation:
+  - ecu/src/brake_ecu.cpp#step
+  - ecu/src/codec.cpp#encode_brake_status
+  tests:
+  - UT-BRK-006
+  - ST-SLICE-001
+  verification_status: computed
+- id: BCM-REQ-001
+  title: Brake lamp activation latency
+  description: 'The Body ECU shall switch the brake lamps on in the same 10 ms cycle
+    in which it receives a valid BRAKE_STATUS frame indicating brake_active (end-to-end
+    <= 10 ms after the Brake ECU reports active).
+
+    '
+  rationale: Provisional hazard H4. Bus latency in the slice is one 10 ms cycle.
+  parent:
+  - CHARTER-G3
+  - HAZ-H4-PROV
+  assumptions:
+  - One-cycle bus latency (LIM-BUS-01)
+  acceptance_criteria: Unit - lamp on in the receiving cycle; S03 - brake_lamp_latency_ms
+    <= 10.
+  allocated_to:
+  - Body Control Module
+  verification_method: Test (unit + system)
+  implementation:
+  - ecu/src/body_ecu.cpp#step
+  tests:
+  - UT-BCM-001
+  - ST-SLICE-001
+  verification_status: computed
+- id: BCM-REQ-002
+  title: Driver warning indicator
+  description: The Body ECU shall drive the FCW telltale from the ADAS_STATUS warning
+    flag and the AEB-unavailable telltale from its unavailable flag.
+  rationale: Driver information for WARNING/BRAKING and for degraded function.
+  parent:
+  - SYS-REQ-001
+  assumptions: []
+  acceptance_criteria: Telltales follow flags in the receiving cycle.
+  allocated_to:
+  - Body Control Module
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/body_ecu.cpp#step
+  tests:
+  - UT-BCM-002
+  verification_status: computed
+- id: BCM-REQ-003
+  title: Hazard lamp policy (project-defined)
+  description: 'The Body ECU shall activate hazard lamps while ADAS reports BRAKING
+    with the emergency flag (request >= 6.0 m/s^2) and keep them on for 3.0 s afterwards.
+
+    '
+  rationale: 'Project-defined policy to warn following traffic of an emergency stop.
+    It is NOT claimed to implement any regulation (e.g. UNECE emergency stop signal
+    rules were not consulted in detail).
+
+    '
+  parent:
+  - CHARTER-G3
+  assumptions: []
+  acceptance_criteria: Off for non-emergency braking; on during emergency; on at +2990
+    ms; off at +3000 ms.
+  allocated_to:
+  - Body Control Module
+  verification_method: Test (unit + system)
+  implementation:
+  - ecu/src/body_ecu.cpp#step
+  tests:
+  - UT-BCM-003
+  - ST-SLICE-001
+  verification_status: computed
+- id: BCM-REQ-004
+  title: Body ECU input supervision
+  description: 'The Body ECU shall flag a timeout fault when no valid BRAKE_STATUS
+    or ADAS_STATUS has been received for > 100 ms, show the AEB-unavailable telltale
+    on ADAS_STATUS timeout, reject corrupted frames, and retain the last valid brake-lamp
+    state on BRAKE_STATUS timeout.
+
+    '
+  rationale: 'Retaining the last lamp state is a PROVISIONAL policy (neither "lamp
+    on" nor "lamp off" is obviously safe on lost status); to be decided in the FSC
+    (Phase 3).
+
+    '
+  parent:
+  - HAZ-H4-PROV
+  - HAZ-H6-PROV
+  assumptions: []
+  acceptance_criteria: Timeouts at > 100 ms; corrupted frame counted and ignored;
+    FI01 unavailability shown.
+  allocated_to:
+  - Body Control Module
+  verification_method: Test (unit + fault injection)
+  implementation:
+  - ecu/src/body_ecu.cpp#step
+  tests:
+  - UT-BCM-004
+  - UT-BCM-005
+  - ST-FI-001
+  verification_status: computed
+- id: SWR-001
+  title: ABI integrity between simulation and ECU library
+  description: The Python bindings shall refuse to use the ECU library if its ABI
+    version or any interface struct size differs from the bindings.
+  rationale: Prevents silent memory corruption and invalid evidence when headers and
+    bindings drift.
+  parent:
+  - CHARTER-G4
+  assumptions: []
+  acceptance_criteria: Matching library loads; a library reporting a different size
+    raises AbiMismatchError.
+  allocated_to:
+  - Simulation harness
+  verification_method: Test (integration)
+  implementation:
+  - sim/aegis_sim/ecu_bindings.py#verify_abi
+  - ecu/src/aegis_c_api.cpp#aegis_struct_size
+  tests:
+  - IT-ABI-001
+  - IT-ABI-002
+  verification_status: computed
+- id: SWR-002
+  title: CRC algorithm correctness
+  description: The CRC-8 implementation shall return the published check value 0x4B
+    for ASCII "123456789" (poly 0x1D, init 0xFF, xorout 0xFF).
+  rationale: Standard check-value test for CRC parameterisation.
+  parent:
+  - TSR-002
+  assumptions: []
+  acceptance_criteria: Exact match in C++ and through the C ABI.
+  allocated_to:
+  - ADAS ECU
+  - Brake ECU
+  - Body Control Module
+  verification_method: Test (unit)
+  implementation:
+  - ecu/src/e2e.cpp#crc8_j1850
+  tests:
+  - UT-E2E-001
+  - IT-ABI-003
+  verification_status: computed
+- id: SIM-REQ-001
+  title: Vehicle model correctness
+  description: The longitudinal model shall reproduce the closed-form stopping distance
+    v^2/(2a) and limit braking to mu*g.
+  rationale: Evidence produced by the simulator is only as credible as the plant model.
+  parent:
+  - CHARTER-G4
+  assumptions: []
+  acceptance_criteria: Relative error <= 1e-9 for 13.89 m/s at 8 m/s^2; friction cap
+    exact.
+  allocated_to:
+  - Simulation harness
+  verification_method: Test (unit)
+  implementation:
+  - sim/aegis_sim/vehicle.py
+  tests:
+  - UT-SIM-001
+  - UT-SIM-002
+  verification_status: computed
+- id: SIM-REQ-002
+  title: Deterministic, timestamped sensor simulation
+  description: Simulation runs shall be bit-reproducible for a given seed; sensor
+    samples carry their sampling timestamp independent of delivery latency.
+  rationale: Reproducibility of every reported result.
+  parent:
+  - CHARTER-G4
+  assumptions: []
+  acceptance_criteria: Same seed -> identical results; different seed -> different
+    measurements.
+  allocated_to:
+  - Simulation harness
+  verification_method: Test (unit + system)
+  implementation:
+  - sim/aegis_sim/sensors.py
+  - sim/aegis_sim/runner.py
+  tests:
+  - UT-SIM-003
+  - UT-SIM-004
+  - ST-SLICE-005
+  verification_status: computed
+- id: SIM-REQ-003
+  title: Virtual CAN timing
+  description: Frames sent in simulation step k shall be receivable in step k+1 only,
+    and every sent frame shall be logged.
+  rationale: Makes bus latency explicit and deterministic.
+  parent:
+  - CHARTER-G4
+  assumptions: []
+  acceptance_criteria: Unit test of delivery timing and logging; 11-bit ID enforcement.
+  allocated_to:
+  - Virtual CAN bus
+  verification_method: Test (unit)
+  implementation:
+  - sim/aegis_sim/can_bus.py
+  tests:
+  - UT-SIM-005
+  verification_status: computed
+- id: FSR-201
+  title: Stopping-distance assurance
+  description: Consider both TTC and a stopping-distance envelope under the documented
+    planning assumptions, retaining validity and speed gates.
+  rationale: Provisional SG-01 allocation from scenario HARA.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - docs/v0.2.0_safety.md
+  acceptance_criteria: UT envelope at 57/60 m for 20 m/s; S02/S04 minimum separation
+    >=2 m; zero wet-road collisions at 60/80 km/h over 20 seeds.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit + system SiL); limited to specified hypotheses
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests: &id001
+  - UT-V2-001
+  - ST-V2-001
+  - ST-V2-002
+  verification_status: computed
+- id: TSR-201
+  title: Stopping-distance assurance
+  description: Consider both TTC and a stopping-distance envelope under the documented
+    planning assumptions, retaining validity and speed gates.
+  rationale: Provisional SG-01 allocation from scenario HARA.
+  parent:
+  - FSR-201
+  assumptions:
+  - docs/v0.2.0_safety.md
+  acceptance_criteria: UT envelope at 57/60 m for 20 m/s; S02/S04 minimum separation
+    >=2 m; zero wet-road collisions at 60/80 km/h over 20 seeds.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit + system SiL); limited to specified hypotheses
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests: *id001
+  verification_status: computed
+- id: FSR-202
+  title: Sustained threat-clear assurance
+  description: Require sustained evidence of threat clearance before release, accounting
+    for stopping separation and continued lead deceleration.
+  rationale: Provisional SG-05 allocation from scenario HARA.
+  parent:
+  - CHARTER-G2
+  assumptions:
+  - docs/v0.2.0_safety.md
+  acceptance_criteria: Opening within unsafe separation retains braking; true opening
+    clearance releases after 500 ms; S04 exactly one braking episode over 20 seeds.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit + system SiL); limited to specified hypotheses
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests: &id002
+  - UT-V2-002
+  - ST-V2-001
+  verification_status: computed
+- id: TSR-202
+  title: Sustained threat-clear assurance
+  description: Require sustained evidence of threat clearance before release, accounting
+    for stopping separation and continued lead deceleration.
+  rationale: Provisional SG-05 allocation from scenario HARA.
+  parent:
+  - FSR-202
+  assumptions:
+  - docs/v0.2.0_safety.md
+  acceptance_criteria: Opening within unsafe separation retains braking; true opening
+    clearance releases after 500 ms; S04 exactly one braking episode over 20 seeds.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Test (unit + system SiL); limited to specified hypotheses
+  implementation:
+  - ecu/src/adas_ecu.cpp#evaluate_threat_states
+  tests: *id002
+  verification_status: computed
+- id: FSR-203
+  title: Brake execution assurance
+  description: Supervise validated brake status, accepted-command progress and gross
+    nonactuation; indicate unavailability without initiating blind braking.
+  rationale: Provisional SG-04 allocation from scenario HARA.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - docs/v0.2.0_safety.md
+  acceptance_criteria: No-feedback boundary 100 ms accepted, 101 ms fault; frozen
+    echo/corruption do not refresh; no brake active beyond 300 ms detected; FI02 indication
+    <=120 ms from onset; no spurious brake on status loss.
+  allocated_to:
+  - ADAS ECU
+  - Brake ECU
+  verification_method: Test (unit + system SiL); limited to specified hypotheses
+  implementation:
+  - ecu/src/adas_ecu.cpp#monitor_feedback
+  - ecu/src/brake_ecu.cpp
+  tests: &id003
+  - UT-V2-003
+  - UT-V2-004
+  - UT-V2-005
+  - ST-V2-003
+  - ST-V2-004
+  verification_status: computed
+- id: TSR-203
+  title: Brake execution assurance
+  description: Supervise validated brake status, accepted-command progress and gross
+    nonactuation; indicate unavailability without initiating blind braking.
+  rationale: Provisional SG-04 allocation from scenario HARA.
+  parent:
+  - FSR-203
+  assumptions:
+  - docs/v0.2.0_safety.md
+  acceptance_criteria: No-feedback boundary 100 ms accepted, 101 ms fault; frozen
+    echo/corruption do not refresh; no brake active beyond 300 ms detected; FI02 indication
+    <=120 ms from onset; no spurious brake on status loss.
+  allocated_to:
+  - ADAS ECU
+  - Brake ECU
+  verification_method: Test (unit + system SiL); limited to specified hypotheses
+  implementation:
+  - ecu/src/adas_ecu.cpp#monitor_feedback
+  - ecu/src/brake_ecu.cpp
+  tests: *id003
+  verification_status: computed
+- id: SIM-301
+  title: Physically consistent simulation contact and braking
+  description: Integrate the first contact within a step, split at vehicle stops,
+    enforce nonnegative friction and no integration beyond scenario horizon.
+  rationale: Provisional project-specific allocation; see v0.3.0 audit, SOTIF and
+    fault-containment analyses.
+  parent:
+  - CHARTER-G4
+  assumptions:
+  - Single relevant target
+  - Documented modeled sensor/transport/plant assumptions
+  acceptance_criteria: Contact time matches analytic examples; tire-limited stopping-distance
+    properties; no step past horizon.
+  allocated_to:
+  - Simulation
+  verification_method: Executed unit/system/property tests; scoped acceptance, not
+    complete safety verification
+  implementation:
+  - sim/aegis_sim/vehicle.py#pair_step
+  - sim/aegis_sim/runner.py
+  tests:
+  - UT-V3-001
+  - UT-V3-002
+  - PBT-V3-001
+  verification_status: computed
+- id: PER-301
+  title: Camera acquisition and delivery contract
+  description: Provide camera noise, probability, confidence, FOV, timestamps, explicit
+    latency and failure conditions. Never deliver a sample before acquisition plus
+    latency.
+  rationale: Provisional project-specific allocation; see v0.3.0 audit, SOTIF and
+    fault-containment analyses.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Single relevant target
+  - Documented modeled sensor/transport/plant assumptions
+  acceptance_criteria: Exact 80 ms acquisition/delivery test; FOV, visibility, occlusion,
+    probability and unavailable cases.
+  allocated_to:
+  - Camera
+  verification_method: Executed unit/system/property tests; scoped acceptance, not
+    complete safety verification
+  implementation:
+  - sim/aegis_sim/perception.py#CameraModel
+  tests:
+  - UT-V3-004
+  verification_status: computed
+- id: PER-302
+  title: Per-source health and fusion assurance
+  description: Reject future, stale, low-confidence or implausible source data; align
+    from measured rates only; reject unresolved dual-target disagreement; retain explicitly
+    degraded single-source operation.
+  rationale: Provisional project-specific allocation; see v0.3.0 audit, SOTIF and
+    fault-containment analyses.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Single relevant target
+  - Documented modeled sensor/transport/plant assumptions
+  acceptance_criteria: 150/151 ms age boundary, future/confidence gates, aligned agreement/disagreement
+    properties; FI01 healthy-camera avoidance over 20 seeds; retain negative false-intervention
+    evidence.
+  allocated_to:
+  - Fusion
+  verification_method: Executed unit/system/property tests; scoped acceptance, not
+    complete safety verification
+  implementation:
+  - sim/aegis_sim/perception.py#Fusion
+  tests:
+  - UT-V3-005
+  - UT-V3-006
+  - ST-V3-001
+  - ST-V3-004
+  - PBT-V3-002
+  verification_status: computed
+- id: BRK-301
+  title: Backup transport containment
+  description: Validate backup demands with separate E2E state, prefer valid primary
+    commands, and preserve the single shared ECU/actuator fault boundary.
+  rationale: Provisional project-specific allocation; see v0.3.0 audit, SOTIF and
+    fault-containment analyses.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Single relevant target
+  - Documented modeled sensor/transport/plant assumptions
+  acceptance_criteria: "Primary 4 versus backup 8 m/s\xB2 arbitration and failover;\
+    \ FI02 avoidance with healthy backup over 20 seeds; failed ECU/actuator still\
+    \ collides."
+  allocated_to:
+  - Brake ECU
+  verification_method: Executed unit/system/property tests; scoped acceptance, not
+    complete safety verification
+  implementation:
+  - ecu/src/brake_ecu.cpp
+  tests:
+  - UT-V3-009
+  - UT-V3-011
+  - ST-V3-002
+  verification_status: computed
+- id: DIA-301
+  title: Achieved braking and transport diagnostic assurance
+  description: Detect invalid or older-than-100 ms achieved-deceleration input and
+    gross under-delivery after buildup and persistence budgets; communication diagnostics
+    shall not initiate blind emergency braking.
+  rationale: Provisional project-specific allocation; see v0.3.0 audit, SOTIF and
+    fault-containment analyses.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Single relevant target
+  - Documented modeled sensor/transport/plant assumptions
+  acceptance_criteria: Each invalid-input condition independently tested; gross zero-achieved
+    brake faults within tested budget; feedback loss detected 110 ms after modeled
+    onset.
+  allocated_to:
+  - ADAS ECU
+  verification_method: Executed unit/system/property tests; scoped acceptance, not
+    complete safety verification
+  implementation:
+  - ecu/src/adas_ecu.cpp#monitor_feedback
+  - sim/aegis_sim/runner.py
+  tests:
+  - UT-V3-007
+  - UT-V3-008
+  - ST-V3-003
+  verification_status: computed
+- id: SEC-401
+  title: Authorized message authentication and bounded CAN FD framing
+  description: Authenticate authorized identities and complete protected fields using
+    established HMAC-SHA256 with 128-bit tag; protected PDUs shall be exactly 64 CAN
+    FD bytes; malformed/modified/unauthorized inputs shall not advance state.
+  rationale: Project-specific TARA and safety-security co-engineering; not a normative
+    standard requirement.
+  parent:
+  - CHARTER-G4
+  assumptions:
+  - Public test-only keys
+  - Trusted FFI, clock and retained-state abstraction
+  - Local simulation only
+  acceptance_criteria: Executed linked positive, negative, boundary/property and system
+    tests; exact policies and residual risks in docs/v0.4.0_security_design.md.
+  allocated_to:
+  - Security gateway
+  verification_method: Executed tests plus matched experiments and bounded parser
+    fuzzing
+  implementation:
+  - sim/aegis_sim/security.py
+  tests:
+  - SEC-UT-001
+  - SEC-PBT-001
+  - SEC-PBT-002
+  - SEC-UT-004
+  - SEC-ST-002
+  verification_status: computed
+- id: SEC-402
+  title: Monotonic freshness and explicit recovery policy
+  description: Reject replay, future/stale age and rollback; retain receiver state
+    across modeled restart; fail on counter/epoch exhaustion. C recovery requires
+    authenticated fresh bounded forward progress or exactly next epoch.
+  rationale: Project-specific TARA and safety-security co-engineering; not a normative
+    standard requirement.
+  parent:
+  - CHARTER-G4
+  assumptions:
+  - Public test-only keys
+  - Trusted FFI, clock and retained-state abstraction
+  - Local simulation only
+  acceptance_criteria: Executed linked positive, negative, boundary/property and system
+    tests; exact policies and residual risks in docs/v0.4.0_security_design.md.
+  allocated_to:
+  - Security gateway
+  verification_method: Executed tests plus matched experiments and bounded parser
+    fuzzing
+  implementation:
+  - sim/aegis_sim/security.py
+  - sim/aegis_sim/security_gateway.py
+  tests:
+  - SEC-UT-002
+  - SEC-UT-003
+  - SEC-UT-004
+  - SEC-ST-003
+  - SEC-ST-005
+  - REV-PBT-002
+  verification_status: computed
+- id: SEC-403
+  title: Authenticated ingress retains application safety validation
+  description: Gate command, status and sensor ingress before native ECU interfaces;
+    retain CRC/plausibility and fault handling after authentication; do not treat
+    trusted compromise as benign merely because MAC is correct.
+  rationale: Project-specific TARA and safety-security co-engineering; not a normative
+    standard requirement.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Public test-only keys
+  - Trusted FFI, clock and retained-state abstraction
+  - Local simulation only
+  acceptance_criteria: Executed linked positive, negative, boundary/property and system
+    tests; exact policies and residual risks in docs/v0.4.0_security_design.md.
+  allocated_to:
+  - Security gateway
+  verification_method: Executed tests plus matched experiments and bounded parser
+    fuzzing
+  implementation:
+  - sim/aegis_sim/security_gateway.py
+  - sim/aegis_sim/runner.py
+  tests:
+  - SEC-ST-001
+  - SEC-ST-006
+  - SEC-ST-002
+  verification_status: computed
+- id: SEC-404
+  title: Safety-security event and availability supervision
+  description: Latch observed security diagnostics without initiating blind braking;
+    measure rejected legitimate demand, gateway loss and healthy-backup/common-dependency
+    behavior using existing safety watchdogs.
+  rationale: Project-specific TARA and safety-security co-engineering; not a normative
+    standard requirement.
+  parent:
+  - CHARTER-G1
+  assumptions:
+  - Public test-only keys
+  - Trusted FFI, clock and retained-state abstraction
+  - Local simulation only
+  acceptance_criteria: Executed linked positive, negative, boundary/property and system
+    tests; exact policies and residual risks in docs/v0.4.0_security_design.md.
+  allocated_to:
+  - Security gateway
+  - ADAS ECU
+  verification_method: Executed tests plus matched experiments and bounded parser
+    fuzzing
+  implementation:
+  - ecu/src/adas_ecu.cpp
+  - sim/aegis_sim/security_gateway.py
+  - sim/aegis_sim/runner.py
+  tests:
+  - SEC-CPP-001
+  - SEC-ST-002
+  - SEC-ST-003
+  - SEC-ST-004
+  verification_status: computed
+- id: SEC-405
+  title: Bounded attack handling and diagnostics
+  description: Bound virtual queues at 64 frames, service at four frames/step and
+    recent diagnostics at 128; detect observed pressure, retain aggregate counts and
+    exercise malformed input/finite fuzzing without claiming availability guarantees.
+  rationale: Project-specific TARA and safety-security co-engineering; not a normative
+    standard requirement.
+  parent:
+  - CHARTER-G4
+  assumptions:
+  - Public test-only keys
+  - Trusted FFI, clock and retained-state abstraction
+  - Local simulation only
+  acceptance_criteria: Executed linked positive, negative, boundary/property and system
+    tests; exact policies and residual risks in docs/v0.4.0_security_design.md.
+  allocated_to:
+  - Security gateway
+  verification_method: Executed tests plus matched experiments and bounded parser
+    fuzzing
+  implementation:
+  - sim/aegis_sim/security_gateway.py
+  - sim/aegis_sim/security.py
+  tests:
+  - SEC-UT-004
+  - SEC-ST-004
+  verification_status: computed
+- id: REC-501
+  title: Freshest authenticated transport selection
+  description: When explicitly enabled with B/C security, prefer the newer authenticated
+    generation timestamp across valid primary/backup requests; equal timestamps preserve
+    primary, missing/rejected paths cannot supersede a valid peer.
+  rationale: Independent review finding and scoped research assurance; see docs/v1.0.0_recovery_decision.md.
+  parent:
+  - BRK-301
+  - SEC-402
+  assumptions:
+  - Trusted local clock and FFI
+  - Prior authentication gates remain active
+  - Simulation-only scope
+  acceptance_criteria: When explicitly enabled with B/C security, prefer the newer
+    authenticated generation timestamp across valid primary/backup requests; equal
+    timestamps preserve primary, missing/rejected paths cannot supersede a valid peer.
+  allocated_to:
+  - Security gateway
+  - ADAS ECU
+  verification_method: Executed tests plus explicit analysis/experiment evidence;
+    scoped acceptance, not objective closure
+  implementation:
+  - sim/aegis_sim/assurance.py#select_authenticated_primary
+  - sim/aegis_sim/runner.py
+  tests:
+  - REV-UT-001
+  - REV-ST-001
+  verification_status: computed
+- id: REC-502
+  title: Current pressure and bounded diagnostic recovery
+  description: Observe current backlog >24 or new drops; transition NORMAL/PRESSURE/RECOVERING
+    using a 100 ms continuously clear dwell; historical peaks alone shall not create
+    new pressure events.
+  rationale: Independent review finding and scoped research assurance; see docs/v1.0.0_recovery_decision.md.
+  parent:
+  - SEC-405
+  assumptions:
+  - Trusted local clock and FFI
+  - Prior authentication gates remain active
+  - Simulation-only scope
+  acceptance_criteria: Observe current backlog >24 or new drops; transition NORMAL/PRESSURE/RECOVERING
+    using a 100 ms continuously clear dwell; historical peaks alone shall not create
+    new pressure events.
+  allocated_to:
+  - Security gateway
+  verification_method: Executed tests plus explicit analysis/experiment evidence;
+    scoped acceptance, not objective closure
+  implementation:
+  - sim/aegis_sim/security_gateway.py
+  tests:
+  - REV-UT-002
+  verification_status: computed
+- id: SOT-501
+  title: Transparent temporal/confidence/braking tradeoff study
+  description: Compare legacy union, corroboration, distinct-acquisition temporal
+    confirmation, confidence lowering and bounded-braking study profiles; retain collisions,
+    misses and unnecessary braking rather than adopting a false-positive-only optimized
+    default.
+  rationale: Independent review finding and scoped research assurance; see docs/v1.0.0_recovery_decision.md.
+  parent:
+  - PER-302
+  - SYS-REQ-002
+  assumptions:
+  - Trusted local clock and FFI
+  - Prior authentication gates remain active
+  - Simulation-only scope
+  acceptance_criteria: Compare legacy union, corroboration, distinct-acquisition temporal
+    confirmation, confidence lowering and bounded-braking study profiles; retain collisions,
+    misses and unnecessary braking rather than adopting a false-positive-only optimized
+    default.
+  allocated_to:
+  - Simulation
+  - Fusion
+  verification_method: Executed tests plus explicit analysis/experiment evidence;
+    scoped acceptance, not objective closure
+  implementation:
+  - sim/aegis_sim/assurance.py#ConfirmationStudy
+  - tools/review/studies.py
+  tests:
+  - REV-UT-003
+  - REV-ST-002
+  verification_status: computed
+- id: QLT-501
+  title: Independent interface and physics oracles
+  description: Verify null/closed-handle error contracts and independently calculated
+    contact boundaries; report static analysis/sanitizer outcomes and limitations
+    without equating clean tests with memory-safety proof.
+  rationale: Independent review finding and scoped research assurance; see docs/v1.0.0_recovery_decision.md.
+  parent:
+  - SWR-001
+  - SIM-301
+  assumptions:
+  - Trusted local clock and FFI
+  - Prior authentication gates remain active
+  - Simulation-only scope
+  acceptance_criteria: Verify null/closed-handle error contracts and independently
+    calculated contact boundaries; report static analysis/sanitizer outcomes and limitations
+    without equating clean tests with memory-safety proof.
+  allocated_to:
+  - Simulation
+  - ECU C ABI
+  verification_method: Executed tests plus explicit analysis/experiment evidence;
+    scoped acceptance, not objective closure
+  implementation:
+  - ecu/src/aegis_c_api.cpp
+  - sim/aegis_sim/vehicle.py
+  - tests/python/test_v1_assurance.py
+  tests:
+  - REV-UT-004
+  - REV-PBT-001
+  verification_status: computed

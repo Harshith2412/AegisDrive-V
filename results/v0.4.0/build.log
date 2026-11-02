@@ -1,0 +1,20 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/harshithmadhavaram/Downloads/aegisdrive-v/build
+[ 28%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/codec.cpp.o
+[ 28%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/e2e.cpp.o
+[ 28%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/adas_ecu.cpp.o
+[ 28%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/brake_ecu.cpp.o
+[ 35%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/body_ecu.cpp.o
+[ 42%] Linking CXX static library libaegis_ecu_core.a
+[ 42%] Built target aegis_ecu_core
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_adas.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu.dir/ecu/src/aegis_c_api.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_body.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_brake.cpp.o
+[ 78%] Linking CXX shared library libaegis_ecu.dylib
+[ 78%] Built target aegis_ecu
+[ 85%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_e2e_codec.cpp.o
+[ 92%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/third_party/minitest/minitest_main.cpp.o
+[100%] Linking CXX executable aegis_ecu_tests
+[100%] Built target aegis_ecu_tests

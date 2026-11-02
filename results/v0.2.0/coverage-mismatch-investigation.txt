@@ -1,0 +1,22 @@
+warning: 1 functions have mismatched data
+hash-mismatch: No profile record found for '_ZNK5aegis7AdasEcu5stateEv' with hash = 0x0
+InstantiationGroup: adas_ecu.cpp:_ZN5aegis12_GLOBAL__N_15clampEddd with size = 1
+InstantiationGroup: adas_ecu.cpp:_ZN5aegis12_GLOBAL__N_110finite_posEd with size = 1
+InstantiationGroup: _ZN5aegis19default_adas_configEv with size = 1
+InstantiationGroup: _ZN5aegis17adas_config_validERK15AegisAdasConfig with size = 1
+InstantiationGroup: _ZN5aegis11compute_ttcEddd with size = 1
+InstantiationGroup: _ZN5aegis22compute_required_decelEddd with size = 1
+InstantiationGroup: _ZN5aegis7AdasEcuC2ERK15AegisAdasConfig with size = 1
+InstantiationGroup: _ZN5aegis7AdasEcu18transition_allowedENS_9AdasStateES1_ with size = 1
+InstantiationGroup: _ZN5aegis7AdasEcu18request_transitionENS_9AdasStateE with size = 1
+InstantiationGroup: _ZNK5aegis7AdasEcu5freshEyy with size = 1
+InstantiationGroup: _ZNK5aegis7AdasEcu12check_inputsERK14AegisAdasInput with size = 1
+InstantiationGroup: _ZN5aegis7AdasEcu22evaluate_threat_statesERK14AegisAdasInputdd with size = 1
+InstantiationGroup: _ZN5aegis7AdasEcu4stepERK14AegisAdasInput with size = 1
+InstantiationGroup: _ZN5aegis7AdasEcu16monitor_feedbackERK14AegisAdasInput with size = 1
+InstantiationGroup: _ZN5aegis7AdasEcu8finalizeERK14AegisAdasInputR15AegisAdasOutputj with size = 1
+Filename                                                                  Regions    Missed Regions     Cover   Functions  Missed Functions  Executed       Lines      Missed Lines     Cover    Branches   Missed Branches     Cover
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/Users/harshithmadhavaram/Downloads/aegisdrive-v/ecu/src/adas_ecu.cpp         366                 3    99.18%          15                 0   100.00%         304                 0   100.00%         304                49    83.88%
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                         366                 3    99.18%          15                 0   100.00%         304                 0   100.00%         304                49    83.88%

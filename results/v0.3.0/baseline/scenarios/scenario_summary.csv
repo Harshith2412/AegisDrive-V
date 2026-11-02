@@ -1,0 +1,7 @@
+scenario,title,runs,collisions,collision_rate,collision_rate_ci95,brake_requested_runs,warning_runs,mean_first_brake_request_s,mean_ttc_at_brake_request_s,min_gap_m_min,min_gap_m_mean,mean_impact_speed_kph_if_collision,degraded_runs,brake_timeout_runs,illegal_transitions_total
+FI01,Fault injection: radar data freezes before the threat develops (H5),20,20,1.0,"[0.8389, 1.0]",0,0,,,0.0,0.0,50.0,20,0,0
+FI02,Fault injection: BRAKE_REQ frames lost during AEB braking (H6),20,20,1.0,"[0.8389, 1.0]",20,20,3.55,2.2114,0.0,0.0,43.1,0,20,0
+S01,Normal driving without a collision threat,20,0,0.0,"[0.0, 0.1611]",0,0,,,40.0,40.0,,0,0,0
+S02,Leading vehicle brakes suddenly,20,0,0.0,"[0.0, 0.1611]",20,20,2.1275,25.481,7.771,8.083,,0,0,0
+S03,Ego vehicle approaches a stationary vehicle,20,0,0.0,"[0.0, 0.1611]",20,20,3.55,2.2114,4.888,4.936,,0,0,0
+S04,Leading vehicle decelerates gradually,20,0,0.0,"[0.0, 0.1611]",20,20,4.665,6.1072,20.263,20.501,,0,0,0

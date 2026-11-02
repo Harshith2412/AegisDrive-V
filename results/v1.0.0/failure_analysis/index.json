@@ -1,0 +1,426 @@
+{
+  "failures": 18,
+  "cause_counts": {
+    "B:counter_gap": 4,
+    "B:stale_authenticated_delivery": 6,
+    "C:stale_authenticated_delivery": 6,
+    "B:rollback_or_replay": 2
+  },
+  "cases": [
+    {
+      "id": "security_holdout_000_B",
+      "primary_cause": "counter_gap",
+      "classifications": [
+        "freshness_counter_desynchronization",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2375,
+        "GAP": 348
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-003",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_002_B",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2246,
+        "STALE": 276
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_002_C",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2246,
+        "STALE": 276
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_005_B",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 7647,
+        "STALE": 1235
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_005_C",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 7647,
+        "STALE": 1235
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_007_B",
+      "primary_cause": "rollback_or_replay",
+      "classifications": [
+        "restart_or_replay_freshness_rejected",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "REPLAY": 268,
+        "ACCEPT": 2304
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-UT-003",
+        "REV-PBT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_009_B",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2836,
+        "STALE": 344
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_009_C",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2836,
+        "STALE": 344
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_013_B",
+      "primary_cause": "rollback_or_replay",
+      "classifications": [
+        "restart_or_replay_freshness_rejected",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "REPLAY": 290,
+        "ACCEPT": 2208
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-UT-003",
+        "REV-PBT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_015_B",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2323,
+        "STALE": 358
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_015_C",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2323,
+        "STALE": 358
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_018_B",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2200,
+        "STALE": 184
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_018_C",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2200,
+        "STALE": 184
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_025_B",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2721,
+        "STALE": 297
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_025_C",
+      "primary_cause": "stale_authenticated_delivery",
+      "classifications": [
+        "authenticated_delivery_deadline_exceeded",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2721,
+        "STALE": 297
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-005",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_027_B",
+      "primary_cause": "counter_gap",
+      "classifications": [
+        "freshness_counter_desynchronization",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 3407,
+        "GAP": 656
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-003",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_043_B",
+      "primary_cause": "counter_gap",
+      "classifications": [
+        "freshness_counter_desynchronization",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 2196,
+        "GAP": 212
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-003",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    },
+    {
+      "id": "security_holdout_045_B",
+      "primary_cause": "counter_gap",
+      "classifications": [
+        "freshness_counter_desynchronization",
+        "native_command_timeout"
+      ],
+      "decision_counts": {
+        "ACCEPT": 3958,
+        "GAP": 963
+      },
+      "comparison_A_collision": false,
+      "related_test_ids": [
+        "SEC-ST-003",
+        "SEC-UT-002"
+      ],
+      "affected_requirements": [
+        "SEC-402",
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ]
+    }
+  ],
+  "interpretation": "All matched A runs avoid collision; these are withholding/rejection/timeout interactions, not simulated CPU delays or unrelated baseline collisions."
+}

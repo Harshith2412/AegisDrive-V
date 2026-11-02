@@ -1,0 +1,2781 @@
+{
+  "requirements": 53,
+  "links": [
+    {
+      "requirement": "SYS-REQ-001",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        },
+        {
+          "id": "ST-SLICE-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:34"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPE_AMBIGUOUS",
+      "objective_note": "Gap/response-distance conditions must constrain broad avoidance wording; final short-gap/ODD/low-grip counterexamples remain, while specified nominal acceptance tests pass.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SYS-REQ-002",
+      "actual_yaml_parents": [
+        "CHARTER-G2"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-02"
+      ],
+      "safety_goals": [
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:43"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "INTENDED_OBJECTIVE_OPEN",
+      "objective_note": "Persistent ghosts and trusted malicious commands cause unnecessary braking despite nominal following tests passing.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SYS-REQ-003",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "ST-SLICE-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:52"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "TESTED_SCENARIOS_ONLY",
+      "objective_note": "S02/S04 acceptance samples pass, not a general lead-braking guarantee.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-001",
+      "actual_yaml_parents": [
+        "SYS-REQ-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#compute_ttc"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:22"
+        },
+        {
+          "id": "IT-ABI-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:36"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-002",
+      "actual_yaml_parents": [
+        "SYS-REQ-001",
+        "SYS-REQ-002"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:53"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        },
+        {
+          "id": "ST-SLICE-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:43"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-003",
+      "actual_yaml_parents": [
+        "SYS-REQ-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#compute_required_decel"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:31"
+        },
+        {
+          "id": "UT-ADAS-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:73"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-004",
+      "actual_yaml_parents": [
+        "SYS-REQ-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:38"
+        },
+        {
+          "id": "UT-ADAS-006",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:96"
+        },
+        {
+          "id": "UT-ADAS-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:107"
+        },
+        {
+          "id": "UT-V3-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:398"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-005",
+      "actual_yaml_parents": [
+        "SYS-REQ-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:107"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-006",
+      "actual_yaml_parents": [
+        "SYS-REQ-002"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-05"
+      ],
+      "safety_goals": [
+        "SG-05"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-008",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:133"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-007",
+      "actual_yaml_parents": [
+        "SYS-REQ-001",
+        "SYS-REQ-002"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#kAllowed",
+        "ecu/src/adas_ecu.cpp#request_transition"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:38"
+        },
+        {
+          "id": "UT-ADAS-014",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:241"
+        },
+        {
+          "id": "IT-ABI-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:47"
+        },
+        {
+          "id": "ST-SLICE-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:127"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-008",
+      "actual_yaml_parents": [
+        "TSR-002"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#finalize",
+        "ecu/src/codec.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-016",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:280"
+        },
+        {
+          "id": "UT-E2E-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:51"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-009",
+      "actual_yaml_parents": [
+        "FSR-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU (Safety Supervisor function)"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#check_inputs"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-011",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:183"
+        },
+        {
+          "id": "UT-ADAS-017",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:297"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-010",
+      "actual_yaml_parents": [
+        "FSR-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-012",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:207"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-011",
+      "actual_yaml_parents": [
+        "FSR-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-013",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:229"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "ADAS-REQ-012",
+      "actual_yaml_parents": [
+        "FSR-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#adas_config_valid"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-015",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:264"
+        },
+        {
+          "id": "UT-V3-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:442"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "FSR-001",
+      "actual_yaml_parents": [
+        "HAZ-H5-PROV"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU",
+        "Body Control Module"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#check_inputs",
+        "ecu/src/body_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:147"
+        },
+        {
+          "id": "UT-ADAS-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:163"
+        },
+        {
+          "id": "UT-SIM-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:44"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "TSR-001",
+      "actual_yaml_parents": [
+        "FSR-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-03"
+      ],
+      "safety_goals": [
+        "SG-03",
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#fresh"
+      ],
+      "tests": [
+        {
+          "id": "UT-ADAS-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:147"
+        },
+        {
+          "id": "UT-ADAS-010",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:163"
+        },
+        {
+          "id": "UT-ADAS-017",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:297"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "TSR-002",
+      "actual_yaml_parents": [
+        "HAZ-H3-PROV",
+        "HAZ-H6-PROV"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-02"
+      ],
+      "safety_goals": [
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU",
+        "Brake ECU",
+        "Body Control Module"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/e2e.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-E2E-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:15"
+        },
+        {
+          "id": "UT-E2E-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:32"
+        },
+        {
+          "id": "ST-INV-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:94"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "TSR-003",
+      "actual_yaml_parents": [
+        "HAZ-H6-PROV"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:86"
+        },
+        {
+          "id": "ST-FI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:73"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BRK-REQ-001",
+      "actual_yaml_parents": [
+        "TSR-002"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-02"
+      ],
+      "safety_goals": [
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#validate",
+        "ecu/src/codec.cpp#decode_brake_request"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:34"
+        },
+        {
+          "id": "UT-BRK-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:48"
+        },
+        {
+          "id": "UT-BRK-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:143"
+        },
+        {
+          "id": "UT-E2E-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:51"
+        },
+        {
+          "id": "UT-E2E-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:61"
+        },
+        {
+          "id": "ST-INV-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:94"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BRK-REQ-002",
+      "actual_yaml_parents": [
+        "TSR-003"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:86"
+        },
+        {
+          "id": "ST-FI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:73"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BRK-REQ-003",
+      "actual_yaml_parents": [
+        "SYS-REQ-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:99"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BRK-REQ-004",
+      "actual_yaml_parents": [
+        "SYS-REQ-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:115"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BRK-REQ-005",
+      "actual_yaml_parents": [
+        "CHARTER-G3"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp#step",
+        "ecu/src/codec.cpp#encode_brake_status"
+      ],
+      "tests": [
+        {
+          "id": "UT-BRK-006",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:129"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BCM-REQ-001",
+      "actual_yaml_parents": [
+        "CHARTER-G3",
+        "HAZ-H4-PROV"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Body Control Module"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:27"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BCM-REQ-002",
+      "actual_yaml_parents": [
+        "SYS-REQ-001"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Body Control Module"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:37"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BCM-REQ-003",
+      "actual_yaml_parents": [
+        "CHARTER-G3"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Body Control Module"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:48"
+        },
+        {
+          "id": "ST-SLICE-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BCM-REQ-004",
+      "actual_yaml_parents": [
+        "HAZ-H4-PROV",
+        "HAZ-H6-PROV"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-06"
+      ],
+      "safety_goals": [
+        "SG-06"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Body Control Module"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/body_ecu.cpp#step"
+      ],
+      "tests": [
+        {
+          "id": "UT-BCM-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:60"
+        },
+        {
+          "id": "UT-BCM-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_body.cpp:82"
+        },
+        {
+          "id": "ST-FI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:60"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SWR-001",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": null,
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Simulation harness"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/ecu_bindings.py#verify_abi",
+        "ecu/src/aegis_c_api.cpp#aegis_struct_size"
+      ],
+      "tests": [
+        {
+          "id": "IT-ABI-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:9"
+        },
+        {
+          "id": "IT-ABI-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:18"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": true
+    },
+    {
+      "requirement": "SWR-002",
+      "actual_yaml_parents": [
+        "TSR-002"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": null,
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU",
+        "Brake ECU",
+        "Body Control Module"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/e2e.cpp#crc8_j1850"
+      ],
+      "tests": [
+        {
+          "id": "UT-E2E-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_e2e_codec.cpp:9"
+        },
+        {
+          "id": "IT-ABI-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_bindings.py:36"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": true
+    },
+    {
+      "requirement": "SIM-REQ-001",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": null,
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Simulation harness"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/vehicle.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:12"
+        },
+        {
+          "id": "UT-SIM-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:22"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": true
+    },
+    {
+      "requirement": "SIM-REQ-002",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": null,
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Simulation harness"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/sensors.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:29"
+        },
+        {
+          "id": "UT-SIM-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:44"
+        },
+        {
+          "id": "ST-SLICE-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_vertical_slice.py:118"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": true
+    },
+    {
+      "requirement": "SIM-REQ-003",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": null,
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Virtual CAN bus"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/can_bus.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-SIM-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_plant_and_bus.py:51"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": true
+    },
+    {
+      "requirement": "FSR-201",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:320"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        },
+        {
+          "id": "ST-V2-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "ASSUMPTION_LIMITED",
+      "objective_note": "Stopping-distance planning assumes achievable deceleration; no measured friction estimator.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "TSR-201",
+      "actual_yaml_parents": [
+        "FSR-201"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-07"
+      ],
+      "safety_goals": [
+        "SG-01"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:320"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        },
+        {
+          "id": "ST-V2-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "ASSUMPTION_LIMITED",
+      "objective_note": "Low adhesion/short-distance collisions remain; passing selected wet cases is not all-weather avoidance.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "FSR-202",
+      "actual_yaml_parents": [
+        "CHARTER-G2"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-05"
+      ],
+      "safety_goals": [
+        "SG-05"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:334"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "TSR-202",
+      "actual_yaml_parents": [
+        "FSR-202"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-05"
+      ],
+      "safety_goals": [
+        "SG-05"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#evaluate_threat_states"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-002",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:334"
+        },
+        {
+          "id": "ST-V2-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:10"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "FSR-203",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:343"
+        },
+        {
+          "id": "UT-V2-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:360"
+        },
+        {
+          "id": "UT-V2-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:378"
+        },
+        {
+          "id": "ST-V2-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:29"
+        },
+        {
+          "id": "ST-V2-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:38"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "DETECTION_NOT_AVAILABILITY",
+      "objective_note": "Status/achieved diagnostics can pass while both-path/shared-actuator loss still collides.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "TSR-203",
+      "actual_yaml_parents": [
+        "FSR-203"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU",
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V2-003",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:343"
+        },
+        {
+          "id": "UT-V2-004",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:360"
+        },
+        {
+          "id": "UT-V2-005",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:378"
+        },
+        {
+          "id": "ST-V2-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:29"
+        },
+        {
+          "id": "ST-V2-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_assurance.py:38"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "DETECTION_NOT_AVAILABILITY",
+      "objective_note": "Diagnostic budgets are not demonstrated vehicle FTTIs or rescue guarantees.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SIM-301",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": null,
+      "hazardous_events": [
+        "HE-01",
+        "HE-02",
+        "HE-03",
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-01",
+        "SG-02",
+        "SG-03",
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Simulation"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/vehicle.py#pair_step",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_physics.py:5"
+        },
+        {
+          "id": "UT-V3-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_physics.py:33"
+        },
+        {
+          "id": "PBT-V3-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_properties.py:7"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": true
+    },
+    {
+      "requirement": "PER-301",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-02",
+        "HE-03",
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-01",
+        "SG-02",
+        "SG-03",
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Camera"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/perception.py#CameraModel"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_perception.py:8"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "PER-302",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-02",
+        "HE-03",
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-01",
+        "SG-02",
+        "SG-03",
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Fusion"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/perception.py#Fusion"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_perception.py:24"
+        },
+        {
+          "id": "UT-V3-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_perception.py:38"
+        },
+        {
+          "id": "ST-V3-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:8"
+        },
+        {
+          "id": "ST-V3-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:42"
+        },
+        {
+          "id": "PBT-V3-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_properties.py:18"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "FALSE_POSITIVE_OBJECTIVE_OPEN",
+      "objective_note": "Union policy retains isolated/persistent common ghosts; corroboration/temporal alternatives introduce true-obstacle collisions.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "BRK-301",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-02",
+        "HE-03",
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-01",
+        "SG-02",
+        "SG-03",
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Brake ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/brake_ecu.cpp"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-009",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:159"
+        },
+        {
+          "id": "UT-V3-011",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_brake.cpp:177"
+        },
+        {
+          "id": "ST-V3-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:19"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "COMMON_DEPENDENCY_OPEN",
+      "objective_note": "Backup command transport shares ECU/actuator/security dependencies.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "DIA-301",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-02",
+        "HE-03",
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-01",
+        "SG-02",
+        "SG-03",
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp#monitor_feedback",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "UT-V3-007",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:412"
+        },
+        {
+          "id": "UT-V3-008",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:429"
+        },
+        {
+          "id": "ST-V3-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v3_faults.py:33"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SEC-401",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [],
+      "safety_goals": [],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Security gateway"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:10"
+        },
+        {
+          "id": "SEC-PBT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:62"
+        },
+        {
+          "id": "SEC-PBT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:71"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "AUTHENTICITY_SCOPE_ONLY",
+      "objective_note": "Valid-key compromise and plausible malicious intent are not prevented.",
+      "provenance": "Supporting review/security allocation; missing hazard/goal derivation explicitly retained",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SEC-402",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [],
+      "safety_goals": [],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Security gateway"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        },
+        {
+          "id": "REV-PBT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:98"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "AVAILABILITY_TRADEOFF",
+      "objective_note": "Strict freshness and stale replacement can suppress legitimate braking; total retained-state loss is replay-vulnerable.",
+      "provenance": "Supporting review/security allocation; missing hazard/goal derivation explicitly retained",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SEC-403",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [],
+      "safety_goals": [],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Security gateway"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-ST-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:13"
+        },
+        {
+          "id": "SEC-ST-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:63"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SEMANTIC_TRUST_OPEN",
+      "objective_note": "Authenticated implausible data is rejected, but plausible false data/dangerous authorized commands can pass.",
+      "provenance": "Supporting review/security allocation; missing hazard/goal derivation explicitly retained",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SEC-404",
+      "actual_yaml_parents": [
+        "CHARTER-G1"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [],
+      "safety_goals": [],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Security gateway",
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/adas_ecu.cpp",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-CPP-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:481"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:40"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Supporting review/security allocation; missing hazard/goal derivation explicitly retained",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SEC-405",
+      "actual_yaml_parents": [
+        "CHARTER-G4"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [],
+      "safety_goals": [],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Security gateway"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:40"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Supporting review/security allocation; missing hazard/goal derivation explicitly retained",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "REC-501",
+      "actual_yaml_parents": [
+        "BRK-301",
+        "SEC-402"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Security gateway",
+        "ADAS ECU"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/assurance.py#select_authenticated_primary",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "REV-UT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:13"
+        },
+        {
+          "id": "REV-ST-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:51"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "ALGORITHM_TESTED_BENEFIT_LIMITED",
+      "objective_note": "Newer verified backup selected; no aggregate collision reduction demonstrated in final set.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "REC-502",
+      "actual_yaml_parents": [
+        "SEC-405"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-04"
+      ],
+      "safety_goals": [
+        "SG-04"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Security gateway"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "REV-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:25"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "SOT-501",
+      "actual_yaml_parents": [
+        "PER-302",
+        "SYS-REQ-002"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": "docs/v0.2.0_safety.md#scenario-hara",
+      "hazardous_events": [
+        "HE-01",
+        "HE-02"
+      ],
+      "safety_goals": [
+        "SG-01",
+        "SG-02"
+      ],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Simulation",
+        "Fusion"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "sim/aegis_sim/assurance.py#ConfirmationStudy",
+        "tools/review/studies.py"
+      ],
+      "tests": [
+        {
+          "id": "REV-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:36"
+        },
+        {
+          "id": "REV-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:91"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "EVALUATION_COMPLETE_OBJECTIVE_OPEN",
+      "objective_note": "Tradeoff study is evidence of limitations, not a false-braking solution.",
+      "provenance": "Legacy reviewed allocation from prior safety_trace",
+      "supporting_assurance": false
+    },
+    {
+      "requirement": "QLT-501",
+      "actual_yaml_parents": [
+        "SWR-001",
+        "SIM-301"
+      ],
+      "item": "docs/01_item_definition.md",
+      "hara": null,
+      "hazardous_events": [],
+      "safety_goals": [],
+      "concept_sources": [
+        "docs/v0.2.0_safety.md",
+        "docs/v0.3.0_fault_containment.md",
+        "docs/v1.0.0_recovery_decision.md"
+      ],
+      "software_allocation": [
+        "Simulation",
+        "ECU C ABI"
+      ],
+      "architecture": [
+        "models/v0.3.0/aegis.sysml",
+        "models/v0.4.0/security.sysml",
+        "models/v1.0.0/review.sysml"
+      ],
+      "implementation": [
+        "ecu/src/aegis_c_api.cpp",
+        "sim/aegis_sim/vehicle.py",
+        "tests/python/test_v1_assurance.py"
+      ],
+      "tests": [
+        {
+          "id": "REV-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:59"
+        },
+        {
+          "id": "REV-PBT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v1_assurance.py:79"
+        }
+      ],
+      "linked_test_status": "VERIFIED",
+      "objective_status": "SCOPED_EVIDENCE_ONLY",
+      "objective_note": "No general safety-goal closure is inferred from linked tests.",
+      "provenance": "Supporting review/security allocation; missing hazard/goal derivation explicitly retained",
+      "supporting_assurance": true
+    }
+  ],
+  "sotif": [
+    {
+      "limitation": "isolated ghost",
+      "trigger": "single-source false target",
+      "mitigation": "compare union/corroboration/temporal/confidence",
+      "evidence": "results/v1.0.0/perception_study.json",
+      "status": "OPEN"
+    },
+    {
+      "limitation": "common ghost",
+      "trigger": "consistent positive false target from both sensors",
+      "mitigation": "none demonstrated",
+      "evidence": "results/v1.0.0/perception_study.json",
+      "status": "OPEN"
+    },
+    {
+      "limitation": "occlusion/fog/low confidence",
+      "trigger": "camera fails to corroborate real obstacle",
+      "mitigation": "single-source recall vs confirmation tradeoff",
+      "evidence": "results/v1.0.0/perception_study.json",
+      "status": "OPEN"
+    },
+    {
+      "limitation": "insufficient physical distance",
+      "trigger": "short gap/low adhesion",
+      "mitigation": "no physically unjustified rescue claim",
+      "evidence": "results/v1.0.0/perception_study.json",
+      "status": "OPEN"
+    }
+  ],
+  "lifecycle_gaps": [
+    {
+      "id": "L01",
+      "finding": "Legacy YAML parents reference charter/provisional hazards, not a complete explicit HARA->SG->FSR derivation graph.",
+      "status": "OPEN: documentary allocations are reviewed supporting links, not retroactive normative derivation"
+    },
+    {
+      "id": "L02",
+      "finding": "SysML behavior is abstract and some units are encoded in names; no full controller/model behavioral equivalence or executed verification cases.",
+      "status": "OPEN"
+    },
+    {
+      "id": "L03",
+      "finding": "Text symbol/link existence and PASS tags do not independently prove acceptance scope or every natural-language obligation.",
+      "status": "OPEN: objective flags below"
+    },
+    {
+      "id": "L04",
+      "finding": "HARA S/E/C/ASIL proposals lack external exposure/controllability validation.",
+      "status": "OPEN: no substantiated ASIL or compliance finding"
+    },
+    {
+      "id": "L05",
+      "finding": "No target ECU timing, physical hardware, following-vehicle model or real image-domain validation.",
+      "status": "OPEN"
+    }
+  ],
+  "security_chain_source": "results/v0.4.0/security_trace.json",
+  "current_security_tests": "results/v1.0.0/traceability_matrix.json",
+  "note": "Review allocations and gaps are explicit; no complete normative derivation or objective closure claimed."
+}

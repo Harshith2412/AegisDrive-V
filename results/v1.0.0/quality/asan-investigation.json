@@ -1,0 +1,12 @@
+{
+  "smoke": {
+    "timeout": true,
+    "stdout": null,
+    "stderr": "==39684==AddressSanitizer: libc interceptors initialized\n"
+  },
+  "ecu": {
+    "timeout": true,
+    "stdout": null,
+    "stderr": "==39800==AddressSanitizer: libc interceptors initialized\n"
+  }
+}

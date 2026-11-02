@@ -1,0 +1,22 @@
+{
+  "release": "0.3.0",
+  "client_date": "2026-11-01",
+  "client_timezone": "America/New_York",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+  "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+  "llvm_cov": "Apple LLVM version 17.0.0\n  Optimized build.",
+  "java": "java version \"21.0.10\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 21.0.10+8-LTS-217)\nJava HotSpot(TM) 64-Bit Server VM (build 21.0.10+8-LTS-217, mixed mode, sharing)\n",
+  "sysml_pilot": {
+    "version": "0.63.1",
+    "release": "2026-09.1",
+    "url": "https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/releases/download/2026-09.1/jupyter-sysml-kernel-0.63.1.zip"
+  },
+  "test_frameworks": "bundled minitest and pytest; Hypothesis property examples",
+  "untested": "GoogleTest FetchContent, python-can, Linux v0.3.0",
+  "cpu_scope": "process CPU around ctypes, not target ECU WCET",
+  "sysml_distribution_sha256": "2ab938037b8d3a02a3518019b6e81b356a994f4a5214727bfedcfd64bad25415",
+  "sysml_jar_sha256": "67c914092f4520ba98548b285c5a9a8bc08f92a0aeec7b763e12a574e91f9ff7",
+  "plantuml_jar_sha256": "7a3eacbccd08311f14b107b1254e179adc1f81fa8bd52bbaf563a37f00ea026f"
+}

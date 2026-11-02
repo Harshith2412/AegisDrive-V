@@ -1,0 +1,77 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/harshithmadhavaram/Downloads/aegisdrive-v/build/llvm
+[ 21%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/brake_ecu.cpp.o
+[ 21%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/body_ecu.cpp.o
+[ 28%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/codec.cpp.o
+[ 28%] Building CXX object CMakeFiles/aegis_ecu_core.dir/ecu/src/adas_ecu.cpp.o
+[ 35%] Linking CXX static library libaegis_ecu_core.a
+[ 42%] Built target aegis_ecu_core
+[ 50%] Building CXX object CMakeFiles/aegis_ecu.dir/ecu/src/aegis_c_api.cpp.o
+[ 64%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_body.cpp.o
+[ 64%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_adas.cpp.o
+[ 71%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_brake.cpp.o
+[ 78%] Linking CXX shared library libaegis_ecu.dylib
+[ 78%] Built target aegis_ecu
+[ 85%] Building CXX object CMakeFiles/aegis_ecu_tests.dir/ecu/tests/test_e2e_codec.cpp.o
+[ 92%] Linking CXX executable aegis_ecu_tests
+[100%] Built target aegis_ecu_tests
+[  OK  ] AdasTtc.TimeToCollisionComputation
+[  OK  ] AdasTtc.RequiredDecelerationComputation
+[  OK  ] AdasStateMachine.EnableDisableAndActivation
+[  OK  ] AdasDecision.WarningThresholdBoundaryAndHysteresis
+[  OK  ] AdasDecision.BrakingThresholdAndDecelClamp
+[  OK  ] AdasDecision.NoInterventionOutsideSpeedWindow
+[  OK  ] AdasDecision.BrakeToStandstillThenHoldAndRelease
+[  OK  ] AdasDecision.AbortBrakingWhenThreatClears
+[  OK  ] AdasSafety.StaleMeasurementBoundary
+[  OK  ] AdasSafety.FrozenDataDuringBrakingReleasesRequest
+[  OK  ] AdasSafety.ImplausibleAndNonFiniteInputs
+[  OK  ] AdasSafety.PersistentDegradationLeadsToFaultUntilReinit
+[  OK  ] AdasSafety.RecoveryRequiresConsecutiveValidCycles
+[  OK  ] AdasStateMachine.TransitionTableAndIllegalTransitions
+[  OK  ] AdasSafety.InvalidConfigurationForcesPermanentFault
+[  OK  ] AdasComms.FramesEncodeOutputsWithIncrementingCounters
+[  OK  ] AdasSafety.EgoSpeedValidityAndFreshness
+[  OK  ] AdasAssurance.StoppingEnvelopeAndConfiguration
+[  OK  ] AdasAssurance.OpeningInsideStoppingEnvelopeDoesNotRelease
+[  OK  ] AdasAssurance.MissingFeedbackBoundaryAndDisableReset
+[  OK  ] AdasAssurance.FrozenAcknowledgmentAndCorruptionCannotMaskFault
+[  OK  ] AdasAssurance.ActuationMismatchAndNormalAcknowledgment
+[  OK  ] AdasAssurance.WarningCannotInitiateBrakingOutsideWindow
+[  OK  ] AdasAssurance.AchievedDecelCannotBeReplacedByAcknowledgment
+[  OK  ] AdasAssurance.AchievedInputValidationIndependentConditions
+[  OK  ] AdasAssurance.ConfigurationIndependentInvalidParameters
+[  OK  ] AdasAssurance.SecurityDiagnosticDoesNotInitiateBlindBrake
+[  OK  ] BodyEcu.BrakeLampSameCycleAsValidStatus
+[  OK  ] BodyEcu.WarningIndicatorFollowsAdasWarning
+[  OK  ] BodyEcu.HazardPolicyForEmergencyBraking
+[  OK  ] BodyEcu.InputTimeoutsAreReported
+[  OK  ] BodyEcu.CorruptedFramesAreRejected
+[  OK  ] BrakeEcu.InitialSyncFrameIsNotActedUpon
+[  OK  ] BrakeEcu.RejectsInvalidCommandFrames
+[  OK  ] BrakeEcu.CommandTimeoutReleasesAebDemand
+[  OK  ] BrakeEcu.ArbitrationSelectsHighestDemand
+[  OK  ] BrakeEcu.ActuatorFirstOrderResponse
+[  OK  ] BrakeEcu.StatusFrameReportsActiveBrake
+[  OK  ] BrakeEcu.ToleratesOneLostFrameButNotMore
+[  OK  ] BrakeEcu.BackupChannelValidatesAndPreservesPrimaryPriority
+[  OK  ] BrakeEcu.BackupCorruptionSequenceAndRangeCannotRefreshDemand
+[  OK  ] E2E.Crc8J1850CheckValue
+[  OK  ] E2E.EverySingleBitFlipIsDetected
+[  OK  ] E2E.CounterSequenceChecks
+[  OK  ] Codec.BrakeRequestRoundTrip
+[  OK  ] Codec.BrakeRequestPayloadRejections
+46 tests, 0 failed
+..............................................                           [100%]
+46 passed in 23.43s
+Filename                      Regions    Missed Regions     Cover   Functions  Missed Functions  Executed       Lines      Missed Lines     Cover    Branches   Missed Branches     Cover
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+adas_ecu.cpp                      417                 1    99.76%          15                 0   100.00%         328                 0   100.00%         352                17    95.17%
+aegis_c_api.cpp                   103                29    71.84%          21                 3    85.71%          70                11    84.29%          64                26    59.38%
+body_ecu.cpp                       70                 2    97.14%           3                 0   100.00%          49                 0   100.00%          56                 7    87.50%
+brake_ecu.cpp                     122                 2    98.36%           6                 0   100.00%         101                 0   100.00%          98                19    80.61%
+codec.cpp                         114                 4    96.49%          10                 0   100.00%          69                 0   100.00%          74                18    75.68%
+e2e.cpp                            29                 0   100.00%           5                 0   100.00%          38                 0   100.00%          16                 0   100.00%
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                             855                38    95.56%          60                 3    95.00%         655                11    98.32%         660                87    86.82%

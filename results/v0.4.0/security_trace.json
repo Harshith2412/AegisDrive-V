@@ -1,0 +1,553 @@
+{
+  "threat_chains": [
+    {
+      "threat": "A01",
+      "asset": "AS02",
+      "goal": "CG01",
+      "requirement": "SEC-401",
+      "mechanism": [
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:10"
+        },
+        {
+          "id": "SEC-PBT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:62"
+        },
+        {
+          "id": "SEC-PBT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:71"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "experiment": "A01",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A02",
+      "asset": "AS01",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "mechanism": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        }
+      ],
+      "experiment": "A02",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A03",
+      "asset": "AS01",
+      "goal": "CG01",
+      "requirement": "SEC-401",
+      "mechanism": [
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:10"
+        },
+        {
+          "id": "SEC-PBT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:62"
+        },
+        {
+          "id": "SEC-PBT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:71"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "experiment": "A03",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A04",
+      "asset": "AS01",
+      "goal": "CG01",
+      "requirement": "SEC-401",
+      "mechanism": [
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:10"
+        },
+        {
+          "id": "SEC-PBT-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:62"
+        },
+        {
+          "id": "SEC-PBT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:71"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "experiment": "A04",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A05",
+      "asset": "AS01",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "mechanism": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        }
+      ],
+      "experiment": "A05",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A06",
+      "asset": "AS06",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "mechanism": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        }
+      ],
+      "experiment": "A06",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A07",
+      "asset": "AS04",
+      "goal": "CG03",
+      "requirement": "SEC-405",
+      "mechanism": [
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/security.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:40"
+        }
+      ],
+      "experiment": "A07",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A08",
+      "asset": "AS01",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "mechanism": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        }
+      ],
+      "experiment": "A08",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A09",
+      "asset": "AS01",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "mechanism": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        }
+      ],
+      "experiment": "A09",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A10",
+      "asset": "AS06",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "mechanism": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-UT-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:26"
+        },
+        {
+          "id": "SEC-UT-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:40"
+        },
+        {
+          "id": "SEC-UT-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_security.py:79"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-005",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:54"
+        }
+      ],
+      "experiment": "A10",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A11",
+      "asset": "AS02",
+      "goal": "CG01",
+      "requirement": "SEC-403",
+      "mechanism": [
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-ST-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:13"
+        },
+        {
+          "id": "SEC-ST-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:63"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "experiment": "A11",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "A12",
+      "asset": "AS01",
+      "goal": "CG05",
+      "requirement": "SEC-403",
+      "mechanism": [
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-ST-001",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:13"
+        },
+        {
+          "id": "SEC-ST-006",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:63"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        }
+      ],
+      "experiment": "A12",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "threat": "T13",
+      "asset": "AS04",
+      "goal": "CG04",
+      "requirement": "SEC-404",
+      "mechanism": [
+        "ecu/src/adas_ecu.cpp",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "tests": [
+        {
+          "id": "SEC-CPP-001",
+          "result": "PASS",
+          "evidence": "ecu/tests/test_adas.cpp:481"
+        },
+        {
+          "id": "SEC-ST-002",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:22"
+        },
+        {
+          "id": "SEC-ST-003",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:32"
+        },
+        {
+          "id": "SEC-ST-004",
+          "result": "PASS",
+          "evidence": "tests/python/test_v4_integration.py:40"
+        }
+      ],
+      "experiment": "C07_shared_compromise",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    }
+  ],
+  "safety_security_chains": [
+    {
+      "security_control_failure_or_scenario": "C01_forged_rejected",
+      "affected_safety_requirements": [
+        "SYS-REQ-002",
+        "BRK-REQ-001"
+      ],
+      "hazardous_event": "HE-02",
+      "experiment": "C01_forged_rejected",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    },
+    {
+      "security_control_failure_or_scenario": "C02_legitimate_bad_auth",
+      "affected_safety_requirements": [
+        "FSR-203",
+        "TSR-203",
+        "BRK-REQ-002"
+      ],
+      "hazardous_event": "HE-04",
+      "experiment": "C02_legitimate_bad_auth",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    },
+    {
+      "security_control_failure_or_scenario": "C03_desync",
+      "affected_safety_requirements": [
+        "FSR-203",
+        "BRK-301"
+      ],
+      "hazardous_event": "HE-04",
+      "experiment": "C03_desync",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    },
+    {
+      "security_control_failure_or_scenario": "C04_flood",
+      "affected_safety_requirements": [
+        "TSR-203",
+        "DIA-301"
+      ],
+      "hazardous_event": "HE-04",
+      "experiment": "C04_flood",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    },
+    {
+      "security_control_failure_or_scenario": "C05_gateway_down",
+      "affected_safety_requirements": [
+        "FSR-203",
+        "BRK-301"
+      ],
+      "hazardous_event": "HE-04",
+      "experiment": "C05_gateway_down",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    },
+    {
+      "security_control_failure_or_scenario": "C06_primary_bad_backup_healthy",
+      "affected_safety_requirements": [
+        "BRK-301",
+        "TSR-203"
+      ],
+      "hazardous_event": "HE-04",
+      "experiment": "C06_primary_bad_backup_healthy",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    },
+    {
+      "security_control_failure_or_scenario": "C07_shared_compromise",
+      "affected_safety_requirements": [
+        "SYS-REQ-002",
+        "BRK-301"
+      ],
+      "hazardous_event": "HE-02",
+      "experiment": "C07_shared_compromise",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    },
+    {
+      "security_control_failure_or_scenario": "C08_trusted_ecu",
+      "affected_safety_requirements": [
+        "SYS-REQ-002",
+        "PER-302"
+      ],
+      "hazardous_event": "HE-02",
+      "experiment": "C08_trusted_ecu",
+      "evidence": "results/v0.4.0/experiment_summary.json"
+    }
+  ],
+  "note": "Link and executed evidence integrity, not prevention of all damage scenarios"
+}

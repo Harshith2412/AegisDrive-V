@@ -1,0 +1,15 @@
+...............F................                                         [100%]
+=================================== FAILURES ===================================
+____________ test_feedback_loss_intermittent_delays_and_duplicates _____________
+
+    def test_feedback_loss_intermittent_delays_and_duplicates():
+        r=run_scenario(replace(BASE,imu_monitor=True,faults=[{'type':'drop_feedback','t_s':2}]),0)
+>       assert not r.collision and r.first_feedback_fault_s==2.1
+E       AssertionError: assert (not False and 2.11 == 2.1)
+E        +  where False = RunResult(scenario_id='S03', seed=0, collision=False, collision_time_s=None, impact_speed_mps=0.0, min_gap_m=4.9600510...greement_cycles=0, degraded_perception_cycles=0, adas_cpu_mean_us=3.0399733510992673, adas_cpu_max_us=20.0, steps=1501).collision
+E        +  and   2.11 = RunResult(scenario_id='S03', seed=0, collision=False, collision_time_s=None, impact_speed_mps=0.0, min_gap_m=4.9600510...greement_cycles=0, degraded_perception_cycles=0, adas_cpu_mean_us=3.0399733510992673, adas_cpu_max_us=20.0, steps=1501).first_feedback_fault_s
+
+tests/python/test_v3_faults.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED tests/python/test_v3_faults.py::test_feedback_loss_intermittent_delays_and_duplicates
+1 failed, 31 passed in 18.60s

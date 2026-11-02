@@ -1,0 +1,27 @@
+{
+  "release": "0.4.0",
+  "status": "PASS: educational evidence integrity only",
+  "cpp_tests": 46,
+  "python_tests": 46,
+  "requirements_with_passing_linked_tests": 49,
+  "threat_chains": 13,
+  "safety_security_cases": 8,
+  "experiments": 846,
+  "baseline_runs_reproduced": 828,
+  "baseline_non_timing_mismatches": 0,
+  "locked_holdout_collisions": {
+    "A": 29,
+    "B": 29,
+    "C": 29
+  },
+  "new_security_holdout_collisions": {
+    "A": 0,
+    "B": 12,
+    "C": 6
+  },
+  "python_security_branches": {
+    "covered": 98,
+    "total": 112
+  },
+  "limitations": "Public test keys; trusted-producer/common dependency compromise; rejection availability costs; physical/SOTIF failures remain. No certification, ISO/SAE 21434 or AUTOSAR conformance claim."
+}

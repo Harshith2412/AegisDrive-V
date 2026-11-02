@@ -1,0 +1,403 @@
+{
+  "standard_inspiration": "ISO/SAE 21434; no standard-defined classification or compliance claim",
+  "method": {
+    "impact": "1 minor operational, 2 significant operational, 3 potential moderate safety effect, 4 potential serious longitudinal safety effect",
+    "feasibility_ease": "1 demanding privilege/resources, 2 authorized component/state/key compromise, 3 local on-link injection/capture under stated access preconditions",
+    "score": "ordinal product; not probability, expected loss, attack success prediction or normative standard method",
+    "priorities": "P1 score>=8, P2 4..6, P3 <=3"
+  },
+  "assets": {
+    "AS01": "Justified AEB/brake demand and actuation",
+    "AS02": "Radar/camera measurement integrity",
+    "AS03": "ECU state, brake lamps and supervisor status",
+    "AS04": "Communication and gateway availability",
+    "AS05": "Local diagnostic event integrity and bounded resources",
+    "AS06": "Test keys, sender authorization and retained freshness state"
+  },
+  "goals": {
+    "CG01": "Authenticate permitted source and integrity before ECU ingress",
+    "CG02": "Reject stale/replayed/rolled-back messages without unbounded freshness recovery",
+    "CG03": "Bound security resource use and expose communication availability loss",
+    "CG04": "Report security events without initiating blind braking or hiding safety costs",
+    "CG05": "Separate channel/message keys and explicitly bound trusted-key compromise assumptions"
+  },
+  "threats": [
+    {
+      "id": "A01",
+      "asset": "AS02",
+      "damage_scenario": "False obstacle -> unnecessary braking or suppressed true threat",
+      "threat_scenario": "Spoof sensor origin/message",
+      "attacker_assumptions": "On-link injector without authorized sensor key; may know its own diagnostic key",
+      "attack_path": "Inject plausible ghost on sensor ingress",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 12,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Authenticate source; retain independent plausibility/fusion gates",
+      "goal": "CG01",
+      "requirement": "SEC-401",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Compromised sensor or correlated plausible ghost can remain valid",
+      "verification_tests": [
+        "SEC-ST-002"
+      ],
+      "experiment": "A01",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A02",
+      "asset": "AS01",
+      "damage_scenario": "Old demand used during changing threat -> inadequate or unnecessary braking",
+      "threat_scenario": "Replay recorded AEB command",
+      "attacker_assumptions": "Passive capture then replay without legitimate key",
+      "attack_path": "Replay a command from 160 ms earlier; modulo-16 CRC counter may align",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 12,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "MAC-bound counter/time, monotonic retained state",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Dropping fresh commands while replay is rejected is still denial of service",
+      "verification_tests": [
+        "SEC-ST-005"
+      ],
+      "experiment": "A02",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A03",
+      "asset": "AS01",
+      "damage_scenario": "Unauthorized autonomous deceleration",
+      "threat_scenario": "Unauthorized brake sender",
+      "attacker_assumptions": "Injector with its own node key, not ADAS key",
+      "attack_path": "Send brake request with attacker source and valid CRC",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 12,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Static sender/receiver/message/key policy",
+      "goal": "CG01",
+      "requirement": "SEC-401",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Authorized compromised sender can issue a dangerous valid command",
+      "verification_tests": [
+        "SEC-ST-002"
+      ],
+      "experiment": "A03",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A04",
+      "asset": "AS01",
+      "damage_scenario": "Changed deceleration or active flag",
+      "threat_scenario": "Payload alteration",
+      "attacker_assumptions": "On-link writer without authorized key",
+      "attack_path": "Modify command and recompute CRC but cannot update MAC",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 12,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "MAC-bind complete header/payload/padding/domain",
+      "goal": "CG01",
+      "requirement": "SEC-401",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Legitimate transmission corruption is rejected too, reducing availability",
+      "verification_tests": [
+        "SEC-ST-002"
+      ],
+      "experiment": "A04",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A05",
+      "asset": "AS01",
+      "damage_scenario": "Late brake demand despite authentic origin",
+      "threat_scenario": "Stale authenticated delivery",
+      "attacker_assumptions": "Can hold legitimate frames, not sign new ones",
+      "attack_path": "Queue original PDUs for 200 ms",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 12,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "100 ms maximum authenticated send age",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Clock integrity and availability are trusted; fresh demand can be withheld",
+      "verification_tests": [
+        "SEC-ST-005"
+      ],
+      "experiment": "A05",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A06",
+      "asset": "AS06",
+      "damage_scenario": "Valid emergency demand rejected indefinitely by freshness state",
+      "threat_scenario": "Freshness desynchronization",
+      "attacker_assumptions": "Authorized freshness-manager fault/compromise or induced loss; cannot forge tag as outsider",
+      "attack_path": "Authenticated counter jump of 1000",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 2,
+      "feasibility_rationale": "Requires authorized producer/state/key privilege or a fault; not obtainable merely by changing unsigned fields.",
+      "risk_score": 8,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "B rejects >32 jump; C accepts only authenticated fresh forward jump <=4096",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Wider window admits larger authorized jumps; no arbitrary rollback/reset",
+      "verification_tests": [
+        "SEC-ST-003"
+      ],
+      "experiment": "A06",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A07",
+      "asset": "AS04",
+      "damage_scenario": "Availability loss / delayed commands or status",
+      "threat_scenario": "Bounded virtual bus flooding",
+      "attacker_assumptions": "Local node can submit six high-priority frames per 10 ms",
+      "attack_path": "Bounded 64-frame queue, four-frame service budget",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 12,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Bound queues/verification work, observe backlog; evaluate backup path",
+      "goal": "CG03",
+      "requirement": "SEC-405",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Cryptography cannot restore occupied bandwidth; abstraction is not CAN bit timing",
+      "verification_tests": [
+        "SEC-ST-004"
+      ],
+      "experiment": "A07",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A08",
+      "asset": "AS01",
+      "damage_scenario": "Valid but delayed command may exceed stopping margin",
+      "threat_scenario": "Delay within or beyond freshness budget",
+      "attacker_assumptions": "Can delay original valid packets",
+      "attack_path": "Delay by 60 ms; new hold-outs also 120/200 ms",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 12,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Bounded age and independent transport; measure accepted delay",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Accepted <=100 ms age is not proof of safe braking latency",
+      "verification_tests": [
+        "SEC-ST-005"
+      ],
+      "experiment": "A08",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A09",
+      "asset": "AS01",
+      "damage_scenario": "Repeated command reaches ECU again",
+      "threat_scenario": "Duplicate valid message",
+      "attacker_assumptions": "Can duplicate captured packet",
+      "attack_path": "Repeat previous command on alternate steps",
+      "impact": 3,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 3,
+      "feasibility_rationale": "Local injector is assumed already on the virtual link.",
+      "risk_score": 9,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Strict monotonic freshness; native CRC/counter remains",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Native E2E already rejects some duplicates; gateway pass is not actuation",
+      "verification_tests": [
+        "SEC-ST-005"
+      ],
+      "experiment": "A09",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A10",
+      "asset": "AS06",
+      "damage_scenario": "Replay acceptance after reset or prolonged unavailability",
+      "threat_scenario": "Restart and freshness rollback",
+      "attacker_assumptions": "Sender reset fault/privilege; receiver retained-state loss is a distinct open threat",
+      "attack_path": "Reset counter at same epoch; C performs monotonic epoch restart after 200 ms",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 2,
+      "feasibility_rationale": "Requires authorized producer/state/key privilege or a fault; not obtainable merely by changing unsigned fields.",
+      "risk_score": 8,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Retained receiver state; B pinned epoch; C authenticated +1 epoch only",
+      "goal": "CG02",
+      "requirement": "SEC-402",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Modeled NVM is not durable/tamper-resistant hardware; total rollback not solved",
+      "verification_tests": [
+        "SEC-UT-003"
+      ],
+      "experiment": "A10",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A11",
+      "asset": "AS02",
+      "damage_scenario": "Authenticated implausible target suppresses assistance",
+      "threat_scenario": "Authorized bad sensor data",
+      "attacker_assumptions": "Sensor key/producer controlled, or trusted sensor fault",
+      "attack_path": "Sign range 500 m with legitimate sensor identity",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 2,
+      "feasibility_rationale": "Requires authorized producer/state/key privilege or a fault; not obtainable merely by changing unsigned fields.",
+      "risk_score": 8,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Retain fusion/ADAS semantic gates after authentication",
+      "goal": "CG01",
+      "requirement": "SEC-403",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Correctly signed plausible misinformation remains outside cryptographic assurance",
+      "verification_tests": [
+        "SEC-ST-006"
+      ],
+      "experiment": "A11",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "A12",
+      "asset": "AS01",
+      "damage_scenario": "Dangerous command from authorized ADAS",
+      "threat_scenario": "Trusted ECU compromise",
+      "attacker_assumptions": "ADAS code/key access; not an unauthenticated bus writer",
+      "attack_path": "Sign valid in-range 9 m/s\u00b2 command",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 2,
+      "feasibility_rationale": "Requires authorized producer/state/key privilege or a fault; not obtainable merely by changing unsigned fields.",
+      "risk_score": 8,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Document trust boundary; independent achieved feedback observes execution, not intent",
+      "goal": "CG05",
+      "requirement": "SEC-403",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Authenticity cannot distinguish malicious from correct authorized intent",
+      "verification_tests": [
+        "SEC-ST-002"
+      ],
+      "experiment": "A12",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    },
+    {
+      "id": "T13",
+      "asset": "AS04",
+      "damage_scenario": "Common security dependency removes both command paths or forges both",
+      "threat_scenario": "Shared gateway/key compromise",
+      "attacker_assumptions": "Gateway administrative/code/key access",
+      "attack_path": "Disable shared gateways or sign on both paths",
+      "impact": 4,
+      "impact_rationale": "Safety-related longitudinal control or assurance loss; severity is scenario-dependent, not an ASIL assignment.",
+      "feasibility_ease": 2,
+      "feasibility_rationale": "Requires authorized producer/state/key privilege or a fault; not obtainable merely by changing unsigned fields.",
+      "risk_score": 8,
+      "risk_method": "Project ordinal impact (1-4) times feasibility ease (1-3); prioritization only",
+      "priority": "P1",
+      "treatment": "Measure common dependency and preserve single physical actuator boundary",
+      "goal": "CG04",
+      "requirement": "SEC-404",
+      "implementation": [
+        "sim/aegis_sim/security.py",
+        "sim/aegis_sim/security_gateway.py",
+        "sim/aegis_sim/runner.py"
+      ],
+      "residual_risk": "Backup transport is not independent security service or physical braking",
+      "verification_tests": [
+        "SEC-ST-004"
+      ],
+      "experiment": "C07_shared_compromise",
+      "evidence": "results/v0.4.0/experiment_runs.json"
+    }
+  ]
+}

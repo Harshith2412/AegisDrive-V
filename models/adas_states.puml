@@ -1,0 +1,37 @@
+@startuml
+!pragma layout smetana
+hide empty description
+[*] --> DISABLED
+DISABLED --> STANDBY : enabled / recovery / hold complete
+STANDBY --> DISABLED : function disabled
+STANDBY --> MONITORING : within window or threat clear
+STANDBY --> DEGRADED : invalid sensor/ego input
+STANDBY --> FAULT : persistent degradation
+MONITORING --> DISABLED : function disabled
+MONITORING --> STANDBY : enabled / recovery / hold complete
+MONITORING --> WARNING : TTC warning threshold
+MONITORING --> BRAKING : TTC or envelope threat
+MONITORING --> DEGRADED : invalid sensor/ego input
+MONITORING --> FAULT : persistent degradation
+WARNING --> DISABLED : function disabled
+WARNING --> STANDBY : enabled / recovery / hold complete
+WARNING --> MONITORING : within window or threat clear
+WARNING --> BRAKING : TTC or envelope threat
+WARNING --> DEGRADED : invalid sensor/ego input
+WARNING --> FAULT : persistent degradation
+BRAKING --> DISABLED : function disabled
+BRAKING --> STANDBY : enabled / recovery / hold complete
+BRAKING --> MONITORING : within window or threat clear
+BRAKING --> DEGRADED : invalid sensor/ego input
+BRAKING --> FAULT : persistent degradation
+DEGRADED --> DISABLED : function disabled
+DEGRADED --> STANDBY : enabled / recovery / hold complete
+DEGRADED --> FAULT : persistent degradation
+FAULT --> DISABLED : function disabled
+note right of BRAKING
+Feedback faults latch unavailable without forcing a state change.
+Detailed guards: docs/v0.2.0_safety.md and evaluate_threat_states.
+This graph includes all legal API-request transitions.
+Not every legal API transition is used automatically.
+end note
+@enduml

@@ -1,0 +1,14 @@
+{
+  "release": "0.2.0",
+  "status": "PASS: educational evidence gate only",
+  "cpp_tests": 39,
+  "python_tests": 23,
+  "verified_requirements": 39,
+  "uml_validated": 5,
+  "sysml": "UNVALIDATED",
+  "paired_runs_each_version": 420,
+  "original_sweep_runs_each_version": 320,
+  "baseline_archive_intact": true,
+  "original_scenario_inputs_identical": true,
+  "limitations": "FI01/FI02 collisions, adhesion limits, confidence/redundancy/fallback issues remain open; no compliance claim"
+}

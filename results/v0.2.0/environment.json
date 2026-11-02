@@ -1,0 +1,18 @@
+{
+  "release": "0.2.0",
+  "client_date": "2026-11-01",
+  "client_timezone": "America/New_York",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "python": "3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+  "cmake": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+  "llvm_cov": "Apple LLVM version 17.0.0\n  Optimized build.",
+  "build": "CMake Debug, bundled minitest, strict warnings",
+  "pytest": "executed",
+  "python_can": "not installed/tested",
+  "baseline_sha256": "65b66f265c9b9bf266009842c7dca164ffb58b49bf81f22bfb6be478e0a9104c",
+  "plantuml_version": "1.2026.2",
+  "timing": "deterministic 10 ms steps, 50 ms radar; shared monotonic simulation clock; host FFI durations not WCET",
+  "plantuml_jar_sha256": "7a3eacbccd08311f14b107b1254e179adc1f81fa8bd52bbaf563a37f00ea026f"
+}

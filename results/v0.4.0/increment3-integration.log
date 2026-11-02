@@ -1,0 +1,188 @@
+.......FF.                                                               [100%]
+=================================== FAILURES ===================================
+______ test_desynchronization_has_safety_cost_and_bounded_resync_recovers ______
+
+    def test_desynchronization_has_safety_cost_and_bounded_resync_recovers():
+        a,b,c=(run(m,'A06') for m in ('A','B','C'))
+        assert not a.collision and b.collision and not c.collision
+        assert b.security_stats['counts']['legitimate_rejected']>0
+        assert c.security_stats['verifier_counts']['RESYNC']>0
+>       assert run('B','A06',backup=True,paths=['primary']).collision is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/python/test_v4_integration.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/python/test_v4_integration.py:11: in run
+    return run_scenario(sc,0,security=dict(mode=mode,attack=attack,start_s=2,**cfg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+sc = Scenario(id='S03', title='Ego vehicle approaches a stationary vehicle', duration_s=15.0, dt_s=0.01, mu=0.9, ego_speed_...nt_links=['SYS-REQ-001'], description='Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver.')
+seed = 0, trace_path = None
+bus = <aegis_sim.security_gateway.SecureBus object at 0x10c6d7e70>
+security = {'mode': 'B', 'attack': 'A06', 'start_s': 2, 'paths': ['primary']}
+
+    def run_scenario(sc: Scenario, seed: int = 0, trace_path: str | Path | None = None,
+                     bus: InProcessCanBus | None = None, security: dict | None = None) -> RunResult:
+        """Run one scenario. A pre-configured bus (e.g. with a tamper hook) may be supplied."""
+        dt_ms = int(round(sc.dt_s * 1000))
+        if dt_ms <= 0 or abs(dt_ms / 1000.0 - sc.dt_s) > 1e-12:
+            raise ValueError("dt_s must be a whole number of milliseconds")
+        if (not math.isfinite(sc.mu) or not 0<=sc.mu<=1.5 or sc.duration_s<=0 or
+            sc.perception not in ('radar','camera','combined') or
+            not all(math.isfinite(x) and x>=0 for x in (sc.ego_speed_kph,sc.lead_speed_kph,sc.gap0_m))):
+            raise ValueError('invalid scenario physics/configuration')
+        def fault(kind,t):
+            return any(f['type']==kind and t>=f['t_s'] and t<f.get('until_s',math.inf) for f in sc.faults)
+        rng = np.random.default_rng(seed)
+        freeze = next((int(f["t_s"] * 1000) for f in sc.faults if f["type"] == "radar_freeze"), None)
+        radar = RadarModel(rng, freeze_at_ms=freeze, **sc.radar)
+        cam_config=dict(sc.camera)
+        cf=next((int(f['t_s']*1000) for f in sc.faults if f['type']=='camera_freeze'),None)
+        if cf is not None: cam_config['freeze_at_ms']=cf
+        camera=CameraModel(np.random.default_rng(np.random.SeedSequence([seed,1])),**cam_config)
+        fusion=Fusion()
+        bus = bus or ScheduledBus(sc.network_delay_ms,sc.network_duplicate)
+        backup=ScheduledBus(20) if sc.backup_enabled else None
+        drop_from = next((int(f["t_s"] * 1000) for f in sc.faults if f["type"] == "drop_brake_req"), None)
+        original_filter=bus.drop_filter
+        def drops(fr):
+            t=fr.timestamp_ms/1000
+            return ((original_filter is not None and original_filter(fr)) or
+                (fr.arbitration_id==eb.CAN_ID_BRAKE_REQ and
+                 (fault('drop_brake_req',t) or fault('both_channels_lost',t) or (fault('intermittent_req',t) and int(t*1000)%200<80))) or
+                (fr.arbitration_id==eb.CAN_ID_BRAKE_STATUS and fault('drop_feedback',t)))
+        bus.drop_filter=drops
+        if backup is not None:
+            backup.drop_filter=lambda fr:fault('both_channels_lost',fr.timestamp_ms/1000) or fault('backup_lost',fr.timestamp_ms/1000)
+    
+        security_context=None
+        if security is not None:
+            from .security_gateway import SecurityContext,SecureBus,CapacityBus
+            security_context=SecurityContext(security)
+            primary=CapacityBus(sc.network_delay_ms,sc.network_duplicate)
+            primary.drop_filter=bus.drop_filter
+            bus=SecureBus(primary,security_context,'primary')
+            if backup is not None:
+                secondary=CapacityBus(20)
+                secondary.drop_filter=backup.drop_filter
+                backup=SecureBus(secondary,security_context,'backup')
+        adas, brake, body = eb.AdasEcu(), eb.BrakeEcu(), eb.BodyEcu()
+        ego = Vehicle(0.0, sc.ego_speed_kph * KPH)
+        lead = Vehicle(sc.gap0_m, sc.lead_speed_kph * KPH)
+        driver = InattentiveDriver(target_speed_mps=ego.v_mps)
+        res = RunResult(sc.id, seed)
+        rows = []
+        step_times = []
+        n_steps = int(round(sc.duration_s / sc.dt_s))
+        if abs(n_steps*sc.dt_s-sc.duration_s)>1e-9:
+            raise ValueError("duration_s must be a whole number of simulation steps")
+        aeb_engaged = False
+        cpu_times=[]
+        achieved=0.0
+    
+        for k in range(n_steps + 1):
+            t_ms = k * dt_ms
+            t_s = t_ms / 1000.0
+            if isinstance(bus,ScheduledBus): bus.advance(t_ms)
+            else: bus.advance()
+>           if backup is not None: backup.advance(t_ms)
+                                   ^^^^^^^^^^^^^^^^^^^^
+E           TypeError: SecureBus.advance() takes 1 positional argument but 2 were given
+
+sim/aegis_sim/runner.py:158: TypeError
+_____________ test_gateway_loss_and_flood_are_availability_events ______________
+
+    def test_gateway_loss_and_flood_are_availability_events():
+        r=run('B',gateway_down=True,paths=['primary'])
+        assert r.collision and r.first_feedback_fault_s is not None
+        # Do not use injected gateway failure onset as a fabricated detection timestamp.
+        assert r.security_stats['first_event_s'] is None
+>       flood=run('C','A07',backup=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/python/test_v4_integration.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/python/test_v4_integration.py:11: in run
+    return run_scenario(sc,0,security=dict(mode=mode,attack=attack,start_s=2,**cfg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+sc = Scenario(id='S03', title='Ego vehicle approaches a stationary vehicle', duration_s=15.0, dt_s=0.01, mu=0.9, ego_speed_...nt_links=['SYS-REQ-001'], description='Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver.')
+seed = 0, trace_path = None
+bus = <aegis_sim.security_gateway.SecureBus object at 0x10c6fd610>
+security = {'mode': 'C', 'attack': 'A07', 'start_s': 2}
+
+    def run_scenario(sc: Scenario, seed: int = 0, trace_path: str | Path | None = None,
+                     bus: InProcessCanBus | None = None, security: dict | None = None) -> RunResult:
+        """Run one scenario. A pre-configured bus (e.g. with a tamper hook) may be supplied."""
+        dt_ms = int(round(sc.dt_s * 1000))
+        if dt_ms <= 0 or abs(dt_ms / 1000.0 - sc.dt_s) > 1e-12:
+            raise ValueError("dt_s must be a whole number of milliseconds")
+        if (not math.isfinite(sc.mu) or not 0<=sc.mu<=1.5 or sc.duration_s<=0 or
+            sc.perception not in ('radar','camera','combined') or
+            not all(math.isfinite(x) and x>=0 for x in (sc.ego_speed_kph,sc.lead_speed_kph,sc.gap0_m))):
+            raise ValueError('invalid scenario physics/configuration')
+        def fault(kind,t):
+            return any(f['type']==kind and t>=f['t_s'] and t<f.get('until_s',math.inf) for f in sc.faults)
+        rng = np.random.default_rng(seed)
+        freeze = next((int(f["t_s"] * 1000) for f in sc.faults if f["type"] == "radar_freeze"), None)
+        radar = RadarModel(rng, freeze_at_ms=freeze, **sc.radar)
+        cam_config=dict(sc.camera)
+        cf=next((int(f['t_s']*1000) for f in sc.faults if f['type']=='camera_freeze'),None)
+        if cf is not None: cam_config['freeze_at_ms']=cf
+        camera=CameraModel(np.random.default_rng(np.random.SeedSequence([seed,1])),**cam_config)
+        fusion=Fusion()
+        bus = bus or ScheduledBus(sc.network_delay_ms,sc.network_duplicate)
+        backup=ScheduledBus(20) if sc.backup_enabled else None
+        drop_from = next((int(f["t_s"] * 1000) for f in sc.faults if f["type"] == "drop_brake_req"), None)
+        original_filter=bus.drop_filter
+        def drops(fr):
+            t=fr.timestamp_ms/1000
+            return ((original_filter is not None and original_filter(fr)) or
+                (fr.arbitration_id==eb.CAN_ID_BRAKE_REQ and
+                 (fault('drop_brake_req',t) or fault('both_channels_lost',t) or (fault('intermittent_req',t) and int(t*1000)%200<80))) or
+                (fr.arbitration_id==eb.CAN_ID_BRAKE_STATUS and fault('drop_feedback',t)))
+        bus.drop_filter=drops
+        if backup is not None:
+            backup.drop_filter=lambda fr:fault('both_channels_lost',fr.timestamp_ms/1000) or fault('backup_lost',fr.timestamp_ms/1000)
+    
+        security_context=None
+        if security is not None:
+            from .security_gateway import SecurityContext,SecureBus,CapacityBus
+            security_context=SecurityContext(security)
+            primary=CapacityBus(sc.network_delay_ms,sc.network_duplicate)
+            primary.drop_filter=bus.drop_filter
+            bus=SecureBus(primary,security_context,'primary')
+            if backup is not None:
+                secondary=CapacityBus(20)
+                secondary.drop_filter=backup.drop_filter
+                backup=SecureBus(secondary,security_context,'backup')
+        adas, brake, body = eb.AdasEcu(), eb.BrakeEcu(), eb.BodyEcu()
+        ego = Vehicle(0.0, sc.ego_speed_kph * KPH)
+        lead = Vehicle(sc.gap0_m, sc.lead_speed_kph * KPH)
+        driver = InattentiveDriver(target_speed_mps=ego.v_mps)
+        res = RunResult(sc.id, seed)
+        rows = []
+        step_times = []
+        n_steps = int(round(sc.duration_s / sc.dt_s))
+        if abs(n_steps*sc.dt_s-sc.duration_s)>1e-9:
+            raise ValueError("duration_s must be a whole number of simulation steps")
+        aeb_engaged = False
+        cpu_times=[]
+        achieved=0.0
+    
+        for k in range(n_steps + 1):
+            t_ms = k * dt_ms
+            t_s = t_ms / 1000.0
+            if isinstance(bus,ScheduledBus): bus.advance(t_ms)
+            else: bus.advance()
+>           if backup is not None: backup.advance(t_ms)
+                                   ^^^^^^^^^^^^^^^^^^^^
+E           TypeError: SecureBus.advance() takes 1 positional argument but 2 were given
+
+sim/aegis_sim/runner.py:158: TypeError
+=========================== short test summary info ============================
+FAILED tests/python/test_v4_integration.py::test_desynchronization_has_safety_cost_and_bounded_resync_recovers
+FAILED tests/python/test_v4_integration.py::test_gateway_loss_and_flood_are_availability_events
+2 failed, 8 passed in 3.45s

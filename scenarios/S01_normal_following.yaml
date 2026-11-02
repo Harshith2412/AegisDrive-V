@@ -1,0 +1,10 @@
+id: S01
+title: Normal driving without a collision threat
+description: Ego follows a lead vehicle at equal speed and constant 40 m gap (~2.1 s headway).
+requirement_links: [SYS-REQ-002]
+duration_s: 20
+dt_s: 0.01
+road: {mu: 0.9}
+ego: {initial_speed_kph: 70}
+lead: {initial_speed_kph: 70, gap0_m: 40, events: []}
+expected: {collision: false, brake_request: false, warning: false}

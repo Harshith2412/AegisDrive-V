@@ -1,0 +1,9 @@
+build/
+.venv/
+__pycache__/
+*.gcda
+*.gcno
+*.gcov
+.pytest_cache/
+
+.hypothesis/

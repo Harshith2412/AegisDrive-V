@@ -1,0 +1,7 @@
+Test project /Users/harshithmadhavaram/Downloads/aegisdrive-v/build
+    Start 1: aegis_ecu_tests
+1/1 Test #1: aegis_ecu_tests ..................   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.01 sec

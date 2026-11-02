@@ -1,0 +1,7 @@
+Name                                Stmts   Miss Branch BrPart  Cover
+---------------------------------------------------------------------
+sim/aegis_sim/assurance.py             24      0     14      1    97%
+sim/aegis_sim/security.py              95      0     52     10    93%
+sim/aegis_sim/security_gateway.py     163      1     66      4    98%
+---------------------------------------------------------------------
+TOTAL                                 282      1    132     15    96%

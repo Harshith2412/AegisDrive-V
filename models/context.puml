@@ -1,0 +1,23 @@
+@startuml
+!pragma layout smetana
+actor Driver
+rectangle "AEB item" {
+  component Radar
+  component "ADAS ECU" as ADAS
+  component "Brake ECU" as Brake
+  component "Body ECU" as Body
+  Radar --> ADAS : range/rate/health/time
+  ADAS --> Brake : CAN 0x120 BRAKE_REQ
+  Brake --> ADAS : CAN 0x220 BRAKE_STATUS + accepted counter
+  Brake --> Body : CAN 0x220
+  ADAS --> Body : CAN 0x130 ADAS_STATUS
+}
+component "Vehicle / road / lead" as Plant
+Driver --> ADAS : enable
+Driver --> Brake : pedal demand
+Plant --> Radar : target truth (simulation only)
+Plant --> ADAS : ego speed/valid/time
+Brake --> Plant : actuator deceleration
+Body --> Driver : warning/unavailable
+Body --> Plant : brake/hazard lamps
+@enduml

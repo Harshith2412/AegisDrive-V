@@ -1,0 +1,51 @@
+@startuml
+!pragma layout smetana
+class RadarMeasurement {
+ range_m : double
+ range_rate_mps : double
+ object_present : bool
+ sensor_ok : bool
+ ts_ms : uint64
+}
+class BrakeRequest {
+ CAN_ID = 0x120
+ DLC = 8
+ crc8 : byte0
+ counter : byte1.low4
+ active_emergency : byte2.bits0_1
+ decel_0p01_mps2 : byte3_4_LE
+ reserved_zero : byte5_7
+}
+class BrakeStatus {
+ CAN_ID = 0x220
+ DLC = 8
+ crc8 : byte0
+ counter : byte1.low4
+ active_timeout_rejecting : byte2.bits0_2
+ actuator_decel_0p01_mps2 : byte3_4_LE
+ ack_valid : byte5.bit0
+ accepted_request_counter : byte6.low4
+ reserved_zero : byte7
+}
+class AdasStatus {
+ CAN_ID = 0x130
+ state : byte2
+ warning_unavailable_emergency_standstill : byte3.bits0_3
+ crc8_counter : byte0_1
+}
+class ADAS
+class Brake
+class Body
+RadarMeasurement --> ADAS
+ADAS --> BrakeRequest
+BrakeRequest --> Brake
+Brake --> BrakeStatus
+BrakeStatus --> ADAS
+BrakeStatus --> Body
+ADAS --> AdasStatus
+AdasStatus --> Body
+note bottom of BrakeStatus
+All unspecified bits reserved zero.
+Echo is acceptance, not physical braking proof.
+end note
+@enduml

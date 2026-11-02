@@ -1,0 +1,130 @@
+{
+  "engine": "Seeded Python mutation/random, not native coverage-guided fuzzing",
+  "seed": 110077,
+  "executions": 100000,
+  "unexpected_acceptance": 0,
+  "exceptions": 0,
+  "policy_vectors": [
+    {
+      "policy": "B",
+      "case": "valid",
+      "expected_admission": true,
+      "actual_admission": true
+    },
+    {
+      "policy": "B",
+      "case": "age_boundary",
+      "expected_admission": true,
+      "actual_admission": true
+    },
+    {
+      "policy": "B",
+      "case": "expired",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "B",
+      "case": "future",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "B",
+      "case": "wrong_sender",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "B",
+      "case": "bad_length",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "B",
+      "case": "bounded_jump",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "B",
+      "case": "next_epoch",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "B",
+      "case": "skipped_epoch",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "B",
+      "case": "duplicate",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "C",
+      "case": "valid",
+      "expected_admission": true,
+      "actual_admission": true
+    },
+    {
+      "policy": "C",
+      "case": "age_boundary",
+      "expected_admission": true,
+      "actual_admission": true
+    },
+    {
+      "policy": "C",
+      "case": "expired",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "C",
+      "case": "future",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "C",
+      "case": "wrong_sender",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "C",
+      "case": "bad_length",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "C",
+      "case": "bounded_jump",
+      "expected_admission": true,
+      "actual_admission": true
+    },
+    {
+      "policy": "C",
+      "case": "next_epoch",
+      "expected_admission": true,
+      "actual_admission": true
+    },
+    {
+      "policy": "C",
+      "case": "skipped_epoch",
+      "expected_admission": false,
+      "actual_admission": false
+    },
+    {
+      "policy": "C",
+      "case": "duplicate",
+      "expected_admission": false,
+      "actual_admission": false
+    }
+  ],
+  "caveat": "Known protocol-oracle checks, not semantic safe-intent accuracy or zero attack probability. Native libFuzzer remains unavailable."
+}

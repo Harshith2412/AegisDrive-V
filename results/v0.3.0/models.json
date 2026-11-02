@@ -1,0 +1,21 @@
+{
+  "sysml_tool": "Official SysML v2 pilot 0.63.1, release 2026-09.1",
+  "semantic_errors": 0,
+  "semantic_warnings": 0,
+  "negative_control": "Unresolved type rejected",
+  "files": [
+    {
+      "path": "models/v0.3.0/aegis.sysml",
+      "sha256": "d68637cde654a02ae76f1509444bcd7dd6a80bf14ebc3d6982cc6fe80b9f778f"
+    },
+    {
+      "path": "models/v0.3.0/requirements.sysml",
+      "sha256": "9f5424edf48641599c859f5a96ba62f5cf755a0c2003d937cf5f2995390dff9a"
+    },
+    {
+      "path": "models/v0.3.0/fault_containment.puml",
+      "sha256": "144f43b084625b88a4c33c9f6e004dd4170bfece8d27b85cbd428e19c3a33c63"
+    }
+  ],
+  "note": "Parser/semantic validity and link integrity do not establish engineering correctness, behavior equivalence or executed SysML verification verdicts."
+}

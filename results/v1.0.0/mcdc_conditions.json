@@ -1,0 +1,719 @@
+[
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 56,
+    "condition_coverage": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "covered": 8,
+    "total": 8,
+    "expression": "    const bool finite = std::isfinite(c.ttc_warning_s) && std::isfinite(c.ttc_brake_s) &&                         std::isfinite(c.ttc_hysteresis_s) && std::isfinite(c.stop_margin_m) &&                         std::isfinite(c.min_active_speed_mps) && std::isfinite(c.standstill_speed_mps) &&                         std::isfinite(c.max_active_speed_mps) && std::isfinite(c.max_brake_decel_mps2);"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 60,
+    "condition_coverage": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "covered": 4,
+    "total": 4,
+    "expression": "    if (!finite || !std::isfinite(c.planning_decel_mps2) || c.planning_decel_mps2 < 0.0 ||         c.planning_decel_mps2 > c.max_brake_decel_mps2) return false;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 62,
+    "condition_coverage": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "covered": 20,
+    "total": 22,
+    "expression": "    return finite_pos(c.ttc_brake_s) && c.ttc_brake_s < c.ttc_warning_s &&            c.ttc_hysteresis_s >= 0.0 && finite_pos(c.min_closing_speed_mps) &&            c.stop_margin_m >= 0.0 && finite_pos(c.decel_gain) &&            finite_pos(c.min_brake_decel_mps2) && c.min_brake_decel_mps2 <= c.max_brake_decel_mps2 &&            c.max_brake_decel_mps2 <= 10.0 && finite_pos(c.emergency_decel_mps2) &&            c.emergency_decel_mps2 <= c.max_brake_decel_mps2 && c.min_active_speed_mps >= 0.0 &&            c.min_active_speed_mps < c.max_active_speed_mps &&            c.max_active_speed_mps <= c.max_ego_speed_mps && c.standstill_speed_mps >= 0.0 &&            c.standstill_speed_mps < c.min_active_speed_mps && finite_pos(c.max_range_m) &&            finite_pos(c.max_abs_range_rate_mps) && finite_pos(c.max_ego_speed_mps) &&            c.stale_timeout_ms > 0 && c.recovery_cycles >= 1 && c.degraded_to_fault_ms > 0;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 100,
+    "condition_coverage": [
+      false,
+      false
+    ],
+    "covered": 0,
+    "total": 2,
+    "expression": "    if (f >= AEGIS_ADAS_NUM_STATES || t >= AEGIS_ADAS_NUM_STATES) return false;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 106,
+    "condition_coverage": [
+      false,
+      true
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "    if (!config_ok_ || !transition_allowed(state_, to)) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 118,
+    "condition_coverage": [
+      false,
+      true
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "    return ts <= now && (now - ts) <= cfg_.stale_timeout_ms;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 123,
+    "condition_coverage": [
+      true,
+      true,
+      true,
+      false
+    ],
+    "covered": 3,
+    "total": 4,
+    "expression": "    const bool finite = std::isfinite(in.ego_speed_mps) &&                         (!in.object_present || (std::isfinite(in.range_m) && std::isfinite(in.range_rate_mps)));"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 134,
+    "condition_coverage": [
+      false,
+      true
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "    if (in.ego_speed_mps < 0.0 || in.ego_speed_mps > cfg_.max_ego_speed_mps) f |= AEGIS_DTC_IMPLAUSIBLE_INPUT;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 144,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "        if (in.range_m < 0.0 || in.range_m > cfg_.max_range_m) f |= AEGIS_DTC_IMPLAUSIBLE_INPUT;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 152,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    const bool in_window = v >= cfg_.min_active_speed_mps && v <= cfg_.max_active_speed_mps;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 160,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "    if (in.object_present && (!have_lead_speed_ || in.meas_ts_ms != previous_meas_ms_)) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 161,
+    "condition_coverage": [
+      true,
+      false,
+      false
+    ],
+    "covered": 1,
+    "total": 3,
+    "expression": "        if (have_lead_speed_ && in.meas_ts_ms > previous_meas_ms_ &&             in.meas_ts_ms - previous_meas_ms_ <= cfg_.stale_timeout_ms) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 171,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "    const bool envelope_threat = in.object_present && closing > cfg_.min_closing_speed_mps &&                                  in.range_m <= envelope;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 174,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    if (state_ == AdasState::Standby && in_window) request_transition(AdasState::Monitoring);"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 179,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "            else if (ttc <= cfg_.ttc_brake_s || envelope_threat) request_transition(AdasState::Braking);"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 184,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "            else if (ttc <= cfg_.ttc_brake_s || envelope_threat) request_transition(AdasState::Braking);"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 200,
+    "condition_coverage": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "covered": 4,
+    "total": 4,
+    "expression": "            const bool closing_now = in.object_present &&                 (closing >= -0.5 || in.range_m <= envelope + cfg_.stop_margin_m || lead_accel_ < -0.3);"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 202,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "            if (!closing_now && !standstill) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 302,
+    "condition_coverage": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "covered": 6,
+    "total": 6,
+    "expression": "        const bool valid = in.achieved_valid && std::isfinite(in.achieved_decel_mps2) &&             in.achieved_decel_mps2 >= 0.0 && in.achieved_decel_mps2 <= 15.0 &&             in.achieved_ts_ms <= in.now_ms && in.now_ms - in.achieved_ts_ms <= 100;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 307,
+    "condition_coverage": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ],
+    "covered": 6,
+    "total": 7,
+    "expression": "        const bool mismatch = valid && state_ == AdasState::Braking &&             in.ego_speed_mps > cfg_.standstill_speed_mps && demand_timing_ &&             in.now_ms >= demand_since_ms_ && in.now_ms - demand_since_ms_ > 300 &&             in.achieved_decel_mps2 < minimum;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 317,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "        if (in.achieved_monitor_enabled && state_ == AdasState::Braking) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 326,
+    "condition_coverage": [
+      true,
+      false
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "    if (in.brake_status_present && in.brake_status_dlc == AEGIS_CAN_DLC) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 328,
+    "condition_coverage": [
+      true,
+      false,
+      false
+    ],
+    "covered": 1,
+    "total": 3,
+    "expression": "        if (feedback_rx_.check(AEGIS_CAN_ID_BRAKE_STATUS, in.brake_status_frame) == e2e::Check::Ok &&             codec::decode_brake_status(in.brake_status_frame, st) && st.actual_decel_mps2 <= 15.0) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 331,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "            if (st.ack_valid && (!have_ack_ || st.ack_counter != last_ack_)) {"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 336,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "            if (st.timeout || st.rejecting) feedback_fault_ = true;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 337,
+    "condition_coverage": [
+      true,
+      false,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 4,
+    "expression": "            if (demand_timing_ && in.now_ms >= demand_since_ms_ &&                 in.now_ms - demand_since_ms_ > 300 && !st.active) feedback_fault_ = true;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 344,
+    "condition_coverage": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 4,
+    "expression": "    if (in.now_ms < last_feedback_ms_ || in.now_ms < last_ack_ms_ ||         in.now_ms - last_feedback_ms_ > 100 || in.now_ms - last_ack_ms_ > 100)"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 351,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    out.warning_active = (state_ == AdasState::Warning || state_ == AdasState::Braking) ? 1 : 0;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 353,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    out.function_unavailable = (state_ == AdasState::Degraded || state_ == AdasState::Fault) ? 1 : 0;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 355,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    out.emergency = (out.brake_request_active && out.decel_request_mps2 >= cfg_.emergency_decel_mps2) ? 1 : 0;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 356,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "    out.standstill = (in.ego_speed_valid && std::isfinite(in.ego_speed_mps) &&                       in.ego_speed_mps <= cfg_.standstill_speed_mps) ? 1 : 0;"
+  },
+  {
+    "file": "ecu/src/adas_ecu.cpp",
+    "line": 14,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "bool finite_pos(double v) { return std::isfinite(v) && v > 0.0; }"
+  },
+  {
+    "file": "ecu/src/aegis_c_api.cpp",
+    "line": 39,
+    "condition_coverage": [
+      false,
+      false
+    ],
+    "covered": 0,
+    "total": 2,
+    "expression": "    return (cfg && aegis::adas_config_valid(*cfg)) ? 1 : 0;"
+  },
+  {
+    "file": "ecu/src/aegis_c_api.cpp",
+    "line": 47,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "    if (!h || !in || !out) return -1;"
+  },
+  {
+    "file": "ecu/src/aegis_c_api.cpp",
+    "line": 55,
+    "condition_coverage": [
+      true,
+      false
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "    if (!h || to >= AEGIS_ADAS_NUM_STATES) return 0;"
+  },
+  {
+    "file": "ecu/src/aegis_c_api.cpp",
+    "line": 59,
+    "condition_coverage": [
+      false,
+      false
+    ],
+    "covered": 0,
+    "total": 2,
+    "expression": "    if (from >= AEGIS_ADAS_NUM_STATES || to >= AEGIS_ADAS_NUM_STATES) return 0;"
+  },
+  {
+    "file": "ecu/src/aegis_c_api.cpp",
+    "line": 75,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "    if (!h || !in || !out) return -1;"
+  },
+  {
+    "file": "ecu/src/aegis_c_api.cpp",
+    "line": 87,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "    if (!h || !in || !out) return -1;"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 24,
+    "condition_coverage": [
+      true,
+      false
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "        if (c == e2e::Check::Ok && codec::decode_brake_status(in.brake_status_frame, bs)) {"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 37,
+    "condition_coverage": [
+      true,
+      false
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "        if (c == e2e::Check::Ok && codec::decode_adas_status(in.adas_status_frame, as)) {"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 40,
+    "condition_coverage": [
+      true,
+      false
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "            adas_emergency_braking_ = as.emergency && as.state == AEGIS_ADAS_BRAKING;"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 48,
+    "condition_coverage": [
+      true,
+      false,
+      true
+    ],
+    "covered": 2,
+    "total": 3,
+    "expression": "    const bool brake_to = !have_brake_ || in.now_ms < last_brake_ms_ || in.now_ms - last_brake_ms_ > cfg_.timeout_ms;"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 49,
+    "condition_coverage": [
+      true,
+      false,
+      true
+    ],
+    "covered": 2,
+    "total": 3,
+    "expression": "    const bool adas_to = !have_adas_ || in.now_ms < last_adas_ms_ || in.now_ms - last_adas_ms_ > cfg_.timeout_ms;"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 53,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    out.warning_indicator = (!adas_to && adas_warning_) ? 1 : 0;"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 54,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    out.aeb_unavailable_indicator = (adas_to || adas_unavailable_) ? 1 : 0;"
+  },
+  {
+    "file": "ecu/src/body_ecu.cpp",
+    "line": 56,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    if (!adas_to && adas_emergency_braking_) hazard_until_ms_ = in.now_ms + cfg_.hazard_hold_ms;"
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "line": 20,
+    "condition_coverage": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "covered": 0,
+    "total": 10,
+    "expression": "    return c.timeout_ms > 0 && c.max_counter_delta >= 1 && c.max_counter_delta <= 14 &&            std::isfinite(c.max_decel_mps2) && c.max_decel_mps2 > 0.0 && c.max_decel_mps2 <= 15.0 &&            std::isfinite(c.actuator_tau_s) && c.actuator_tau_s > 0.0 &&            std::isfinite(c.active_threshold_mps2) && c.active_threshold_mps2 > 0.0;"
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "line": 73,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "        if (primary_act || backup_act) {"
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "line": 82,
+    "condition_coverage": [
+      true,
+      false,
+      true
+    ],
+    "covered": 2,
+    "total": 3,
+    "expression": "    const bool timed_out = !have_valid_ || in.now_ms < last_valid_ms_ ||                            (in.now_ms - last_valid_ms_) > cfg_.timeout_ms;"
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "line": 84,
+    "condition_coverage": [
+      false,
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 3,
+    "expression": "    const double aeb = (config_ok_ && !timed_out && cmd_active_) ? cmd_decel_ : 0.0;"
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "line": 91,
+    "condition_coverage": [
+      true,
+      false,
+      false
+    ],
+    "covered": 1,
+    "total": 3,
+    "expression": "    const bool dt_ok = std::isfinite(in.dt_s) && in.dt_s > 0.0 && in.dt_s <= 0.1;"
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "line": 92,
+    "condition_coverage": [
+      true,
+      false
+    ],
+    "covered": 1,
+    "total": 2,
+    "expression": "    if (dt_ok && config_ok_) {"
+  },
+  {
+    "file": "ecu/src/brake_ecu.cpp",
+    "line": 113,
+    "condition_coverage": [
+      true,
+      true,
+      true
+    ],
+    "covered": 3,
+    "total": 3,
+    "expression": "    st.rejecting = in.frame_present && !out.frame_accepted && last_reject_ != AEGIS_REJ_NONE;"
+  },
+  {
+    "file": "ecu/src/codec.cpp",
+    "line": 31,
+    "condition_coverage": [
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "covered": 1,
+    "total": 5,
+    "expression": "    if ((f[1] & 0xF0u) || (f[2] & 0xFCu) || f[5] || f[6] || f[7]) return AEGIS_REJ_RESERVED_BITS;"
+  },
+  {
+    "file": "ecu/src/codec.cpp",
+    "line": 37,
+    "condition_coverage": [
+      true,
+      true,
+      false
+    ],
+    "covered": 2,
+    "total": 3,
+    "expression": "    if (!active && (raw != 0 || emergency)) return AEGIS_REJ_INCONSISTENT;"
+  },
+  {
+    "file": "ecu/src/codec.cpp",
+    "line": 38,
+    "condition_coverage": [
+      true,
+      true
+    ],
+    "covered": 2,
+    "total": 2,
+    "expression": "    if (active && raw == 0) return AEGIS_REJ_INCONSISTENT;"
+  },
+  {
+    "file": "ecu/src/codec.cpp",
+    "line": 54,
+    "condition_coverage": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "covered": 0,
+    "total": 6,
+    "expression": "    if ((f[1] & 0xF0u) || (f[3] & 0xF0u) || f[4] || f[5] || f[6] || f[7]) return false;"
+  },
+  {
+    "file": "ecu/src/codec.cpp",
+    "line": 75,
+    "condition_coverage": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "covered": 0,
+    "total": 5,
+    "expression": "    if ((f[1] & 0xF0u) || (f[2] & 0xF8u) || (f[5] & 0xFEu) || (f[6] & 0xF0u) || f[7]) return false;"
+  }
+]

@@ -1,0 +1,1384 @@
+{
+  "total": 29,
+  "groups": {
+    "insufficient_distance_even_with_instant_max_braking": 15,
+    "outside_activation_ODD": 7,
+    "grip_below_planning_assumption": 5,
+    "remaining_controller_perception_timing_interaction": 2
+  },
+  "cases": [
+    {
+      "id": "holdout_009",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 28.710342473309307,
+      "config": {
+        "id": "holdout_009",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.794472702510111,
+        "ego_speed_kph": 76.15714920172627,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 16.32853599791229,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.13809894793262606
+        },
+        "camera": {
+          "latency_ms": 80,
+          "visibility": 0.3743350784671158,
+          "occlusion": 0.2714563695965376,
+          "detection_probability": 0.825870810786804
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_012",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 27.75576281972559,
+      "config": {
+        "id": "holdout_012",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.830620568342182,
+        "ego_speed_kph": 76.56493650775077,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 23.28992958126714,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.4018874057233127
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.8720015141351347,
+          "occlusion": 0.2516077900498707,
+          "detection_probability": 0.9232040002180263
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_021",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 21.56924463151074,
+      "config": {
+        "id": "holdout_021",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.9103852908953238,
+        "ego_speed_kph": 70.66137537833846,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 18.68459388336361,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.7882149755024968
+        },
+        "camera": {
+          "latency_ms": 80,
+          "visibility": 0.4987179561906705,
+          "occlusion": 0.02912144008099091,
+          "detection_probability": 0.6708746859990689
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_023",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 53.62999350179423,
+      "config": {
+        "id": "holdout_023",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.3375291052586607,
+        "ego_speed_kph": 67.84400672623237,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 38.07171543237738,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.44998216928014056
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.6668992242143217,
+          "occlusion": 0.5462575711773967,
+          "detection_probability": 0.8635756224596919
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_025",
+      "primary_group": "outside_activation_ODD",
+      "contributing_factors": [
+        "outside_activation_ODD",
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 31.928575482228283,
+      "config": {
+        "id": "holdout_025",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.8590566427139459,
+        "ego_speed_kph": 83.5127286425228,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 20.59555490944096,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.7056136483182932
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.9487726151905043,
+          "occlusion": 0.30385666258308835,
+          "detection_probability": 0.7458144830192363
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_027",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 115.64954556210415,
+      "config": {
+        "id": "holdout_027",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.20056639115444208,
+        "ego_speed_kph": 76.7985548259796,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 73.50739751225673,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.7656673930545104
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.4064559913948157,
+          "occlusion": 0.531499013251099,
+          "detection_probability": 0.8847676456703696
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_047",
+      "primary_group": "outside_activation_ODD",
+      "contributing_factors": [
+        "outside_activation_ODD"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 49.36501957210457,
+      "config": {
+        "id": "holdout_047",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.5135395604703584,
+        "ego_speed_kph": 80.28762507562939,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 92.2743460810402,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.3133818170191917
+        },
+        "camera": {
+          "latency_ms": 80,
+          "visibility": 0.7749766995237647,
+          "occlusion": 0.319265096356085,
+          "detection_probability": 0.919298832722649
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 20,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_048",
+      "primary_group": "outside_activation_ODD",
+      "contributing_factors": [
+        "outside_activation_ODD",
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 66.84464642764695,
+      "config": {
+        "id": "holdout_048",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.3987857954688435,
+        "ego_speed_kph": 82.32943932285589,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 53.97417575371136,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.6008544736503554
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.9232863428520787,
+          "occlusion": 0.28246222251544256,
+          "detection_probability": 0.8462007402631418
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 20,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_054",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 11.094477874756052,
+      "config": {
+        "id": "holdout_054",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.45324463452677155,
+        "ego_speed_kph": 35.75788080045968,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 8.382350596077025,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.508139116301326
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.5726391389020554,
+          "occlusion": 0.5228407778287034,
+          "detection_probability": 0.700010334737052
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 20,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_057",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 15.241060265949459,
+      "config": {
+        "id": "holdout_057",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.8366996990155839,
+        "ego_speed_kph": 56.94353167203631,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 8.353832038650744,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.5757553183859555
+        },
+        "camera": {
+          "latency_ms": 80,
+          "visibility": 0.3503363230461325,
+          "occlusion": 0.004029180176166802,
+          "detection_probability": 0.7079456971196432
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_060",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 43.84819829632869,
+      "config": {
+        "id": "holdout_060",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.5624991769856615,
+        "ego_speed_kph": 79.19337002854556,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 32.01151856090146,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.1832003516638053
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.31496241399591485,
+          "occlusion": 0.07248482457730214,
+          "detection_probability": 0.7255282452875503
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_061",
+      "primary_group": "grip_below_planning_assumption",
+      "contributing_factors": [
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 17.360469546259118,
+      "config": {
+        "id": "holdout_061",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.2350345384653407,
+        "ego_speed_kph": 32.21058254554782,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 78.95319730292304,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.19842348082067734
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.49153830933357445,
+          "occlusion": 0.40871922989914816,
+          "detection_probability": 0.8937458874945817
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_063",
+      "primary_group": "grip_below_planning_assumption",
+      "contributing_factors": [
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 59.51071594816542,
+      "config": {
+        "id": "holdout_063",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.28912412483582045,
+        "ego_speed_kph": 66.14419806822966,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 63.71015825713927,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.6410108687816617
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.2952959793485797,
+          "occlusion": 0.23744403753076002,
+          "detection_probability": 0.8857267745058537
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_066",
+      "primary_group": "grip_below_planning_assumption",
+      "contributing_factors": [
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 27.258067837998382,
+      "config": {
+        "id": "holdout_066",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.2808634034197061,
+        "ego_speed_kph": 44.121179439676176,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 47.34299178805121,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.5981226107192299
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.698724914403636,
+          "occlusion": 0.3147152577330416,
+          "detection_probability": 0.7629762098489624
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_068",
+      "primary_group": "outside_activation_ODD",
+      "contributing_factors": [
+        "outside_activation_ODD"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 36.67021668945256,
+      "config": {
+        "id": "holdout_068",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.7345411256417154,
+        "ego_speed_kph": 82.75929807218718,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 53.227134024099094,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.2744426869030115
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.689291099678837,
+          "occlusion": 0.18609784082832295,
+          "detection_probability": 0.6938641692473664
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_073",
+      "primary_group": "grip_below_planning_assumption",
+      "contributing_factors": [
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 24.69763974771347,
+      "config": {
+        "id": "holdout_073",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.2581654771372219,
+        "ego_speed_kph": 40.26510270517364,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 26.688085806028184,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.4546064952392351
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.8247082089099473,
+          "occlusion": 0.4482056574862949,
+          "detection_probability": 0.9302485976953939
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_075",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 33.4722531335605,
+      "config": {
+        "id": "holdout_075",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.24979088684171194,
+        "ego_speed_kph": 46.10868864586383,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 31.150713564587605,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.6921514204474989
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.6317365253278031,
+          "occlusion": 0.184057228068952,
+          "detection_probability": 0.8489090327442118
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 20,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_079",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 25.85855778760385,
+      "config": {
+        "id": "holdout_079",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.502878763944905,
+        "ego_speed_kph": 57.50237731038002,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 17.410453897058016,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.382617529204227
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.6730345089538641,
+          "occlusion": 0.5508392396519518,
+          "detection_probability": 0.6505344770487611
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_081",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 70.61841878745749,
+      "config": {
+        "id": "holdout_081",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.22332561294122116,
+        "ego_speed_kph": 63.325738637159255,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 24.222731920963735,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.6323127785492076
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.6146310530570219,
+          "occlusion": 0.1930457932344534,
+          "detection_probability": 0.6938829372942886
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_082",
+      "primary_group": "outside_activation_ODD",
+      "contributing_factors": [
+        "outside_activation_ODD",
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 50.520271404684244,
+      "config": {
+        "id": "holdout_082",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.5150444296932393,
+        "ego_speed_kph": 81.34056543710042,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 43.57524699752175,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.42318859985551627
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.5093462977028187,
+          "occlusion": 0.19509771596143913,
+          "detection_probability": 0.7528476079980896
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_084",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 91.9596450667497,
+      "config": {
+        "id": "holdout_084",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.2108927335876145,
+        "ego_speed_kph": 70.2233354388643,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 32.430088697244365,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.18168300265105652
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.8072211710878675,
+          "occlusion": 0.25923213458959776,
+          "detection_probability": 0.8622957456710376
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 20,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_087",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 75.07653162954341,
+      "config": {
+        "id": "holdout_087",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.3337918279058233,
+        "ego_speed_kph": 79.8255560942204,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 23.310398223970452,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 60,
+          "range_sigma_m": 0.2919953773993274
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.8069091650749598,
+          "occlusion": 0.10875609855340815,
+          "detection_probability": 0.7529617052296451
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_100",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 77.60001539443594,
+      "config": {
+        "id": "holdout_100",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.2516291659083553,
+        "ego_speed_kph": 70.46336756349537,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 62.63250903009713,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.23774649500274647
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.8245019464191289,
+          "occlusion": 0.5222435293215202,
+          "detection_probability": 0.6973836746288045
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_101",
+      "primary_group": "grip_below_planning_assumption",
+      "contributing_factors": [
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 68.72659389695404,
+      "config": {
+        "id": "holdout_101",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.3411969688096778,
+        "ego_speed_kph": 77.21772367467294,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 80.35826061529946,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.7712510384688135
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.6747531285530641,
+          "occlusion": 0.3943256783029506,
+          "detection_probability": 0.7349718280870153
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_103",
+      "primary_group": "insufficient_distance_even_with_instant_max_braking",
+      "contributing_factors": [
+        "insufficient_distance_even_with_instant_max_braking",
+        "grip_below_planning_assumption"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 65.49620342159054,
+      "config": {
+        "id": "holdout_103",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.34075601291459706,
+        "ego_speed_kph": 75.3324044542608,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 45.315098595490454,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.3106353674790965
+        },
+        "camera": {
+          "latency_ms": 40,
+          "visibility": 0.7836705760437157,
+          "occlusion": 0.5839132015459434,
+          "detection_probability": 0.728066006046035
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_105",
+      "primary_group": "outside_activation_ODD",
+      "contributing_factors": [
+        "outside_activation_ODD",
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 35.13854336112298,
+      "config": {
+        "id": "holdout_105",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.7421217459531666,
+        "ego_speed_kph": 81.42944189653431,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 28.259726880942786,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 30,
+          "range_sigma_m": 0.737994767213231
+        },
+        "camera": {
+          "latency_ms": 80,
+          "visibility": 0.4935266002313536,
+          "occlusion": 0.45028261662971886,
+          "detection_probability": 0.7253729707631601
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 0,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_108",
+      "primary_group": "outside_activation_ODD",
+      "contributing_factors": [
+        "outside_activation_ODD",
+        "insufficient_distance_even_with_instant_max_braking"
+      ],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 30.84368343875528,
+      "config": {
+        "id": "holdout_108",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.9907681736029237,
+        "ego_speed_kph": 84.82461006449032,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 9.77868728039789,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.2907011322037021
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.4122950722075971,
+          "occlusion": 0.05195932280039615,
+          "detection_probability": 0.8631468159569149
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_110",
+      "primary_group": "remaining_controller_perception_timing_interaction",
+      "contributing_factors": [],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 13.802246782227,
+      "config": {
+        "id": "holdout_110",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.7479354592280331,
+        "ego_speed_kph": 51.23408189215092,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 14.995285691782477,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.5499830561751378
+        },
+        "camera": {
+          "latency_ms": 80,
+          "visibility": 0.8641912301947552,
+          "occlusion": 0.5943732010057423,
+          "detection_probability": 0.8583261461705741
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    },
+    {
+      "id": "holdout_117",
+      "primary_group": "remaining_controller_perception_timing_interaction",
+      "contributing_factors": [],
+      "ideal_sensor_zero_delay_collision": true,
+      "initial_ideal_stop_distance_m": 56.40438941310223,
+      "config": {
+        "id": "holdout_117",
+        "title": "Ego vehicle approaches a stationary vehicle",
+        "duration_s": 20,
+        "dt_s": 0.01,
+        "mu": 0.44551378052330126,
+        "ego_speed_kph": 79.93537642836334,
+        "lead_speed_kph": 0.0,
+        "gap0_m": 57.51753607243217,
+        "lead_events": [],
+        "radar": {
+          "latency_ms": 0,
+          "range_sigma_m": 0.12277426240628732
+        },
+        "camera": {
+          "latency_ms": 120,
+          "visibility": 0.5937246545035506,
+          "occlusion": 0.3819867335436589,
+          "detection_probability": 0.6610093595151283
+        },
+        "perception": "combined",
+        "backup_enabled": true,
+        "network_delay_ms": 60,
+        "network_duplicate": false,
+        "imu_monitor": true,
+        "radar_bias_m": 0.0,
+        "radar_false_positive": false,
+        "target_present": true,
+        "faults": [],
+        "expected": {
+          "collision": false,
+          "brake_request": true
+        },
+        "requirement_links": [
+          "SYS-REQ-001"
+        ],
+        "description": "Ego at 50 km/h approaches a stationary vehicle 80 m ahead; inattentive driver."
+      }
+    }
+  ]
+}

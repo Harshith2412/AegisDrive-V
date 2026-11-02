@@ -1,0 +1,12 @@
+@startuml
+hide empty description
+[*] --> NORMAL
+NORMAL --> PRESSURE : current backlog >24 or new drops
+PRESSURE --> RECOVERING : clear now / begin dwell
+RECOVERING --> PRESSURE : new pressure / reset dwell
+RECOVERING --> NORMAL : continuously clear >=100 ms
+note right of NORMAL
+Native security DTC remains latched until disable.
+Recovery does not relax authentication or create a brake request.
+end note
+@enduml
